@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>FinSuite</title>
 <link rel="manifest" href="manifest.json"/>
-<meta name="theme-color" content="#0f1117"/>
+<meta name="theme-color" content="#09090f"/>
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -13,1243 +13,586 @@
 <link rel="apple-touch-icon" href="icon-192.png"/>
 <link rel="icon" type="image/png" href="icon-192.png"/>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#07080d;color:#e8eaf0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:14px;min-height:100vh}
-:root{--card:#161923;--surf:#0f1117;--bdr:#1e2433;--acc:#f5a623;--grn:#22c55e;--red:#ef4444;--blu:#3b82f6;--pur:#a855f7;--tel:#14b8a6;--orn:#f97316;--pink:#ec4899;--lime:#84cc16;--mut:#6b7280;--dim:#374151}
-::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-thumb{background:#374151;border-radius:3px}
-header{background:var(--surf);border-bottom:1px solid var(--bdr);padding:0 24px;position:sticky;top:0;z-index:100}
-.hr{max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
-nav{background:var(--surf);border-bottom:1px solid var(--bdr);padding:0 24px}
-.nr{max-width:1600px;margin:0 auto;display:flex;gap:4px;padding:8px 0}
-.nb{padding:8px 18px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:13px;background:transparent;color:var(--mut);font-family:inherit}
-.nb.on{background:var(--acc);color:#000}
-main{max-width:1600px;margin:0 auto;padding:24px}
-.pg{display:none;flex-direction:column;gap:20px}.pg.on{display:flex}
-.card{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:20px}
-.ct{font-size:17px;font-weight:800;color:#e8eaf0;font-family:Georgia,serif;margin-bottom:4px}
-.cs{font-size:12px;color:var(--mut);margin-bottom:14px}
-.lbl{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;font-weight:600}
-input,select{width:100%;background:var(--surf);border:1px solid var(--bdr);border-radius:8px;padding:9px 12px;color:#e8eaf0;font-size:14px;font-family:inherit}
-input:focus,select:focus{outline:none;border-color:rgba(245,166,35,.5);box-shadow:0 0 0 2px rgba(245,166,35,.08)}
-input[readonly]{color:var(--mut);cursor:not-allowed}
-.btn{display:inline-block;padding:9px 20px;border-radius:8px;border:none;cursor:pointer;font-weight:700;font-size:13px;background:var(--acc);color:#000;font-family:inherit;transition:opacity .15s}
-.btn:hover{opacity:.85}
-.btn-sm{padding:5px 12px;font-size:12px}
-.btn-sec{background:var(--surf)!important;color:#e8eaf0!important;border:1px solid var(--bdr)!important}
-.btn-del{background:rgba(239,68,68,.12)!important;color:var(--red)!important;border:1px solid var(--red)!important}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.g8{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
-.gauto{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
-.kpi{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:14px 16px}
-.kl{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
-.kv{font-size:17px;font-weight:800;font-family:'Courier New',monospace}
-table{width:100%;border-collapse:collapse;font-size:12px}
-th{padding:8px 11px;text-align:left;font-weight:600;white-space:nowrap;font-size:11px;color:var(--mut);border-bottom:1px solid var(--bdr)}
-td{padding:8px 11px;vertical-align:top;border-bottom:1px solid rgba(255,255,255,.025)}
-tbody tr:hover td{background:rgba(245,166,35,.03)}
-.bdg{display:inline-block;border-radius:4px;padding:2px 7px;font-size:11px;font-weight:700}
-.mn{font-family:'Courier New',monospace;font-weight:700}
-.eq-b{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:12px 16px}
-.dt-b{background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:12px 16px}
-.gpf-b{background:rgba(236,72,153,.07);border:1px solid rgba(236,72,153,.2);border-radius:10px;padding:12px 16px}
-.emg-b{background:rgba(132,204,22,.07);border:1px solid rgba(132,204,22,.2);border-radius:10px;padding:12px 16px}
-.ret-b{background:rgba(20,184,166,.07);border:1px solid rgba(20,184,166,.2);border-radius:10px;padding:12px 16px}
-.nps-b{background:rgba(247,144,35,.07);border:1px solid rgba(247,144,35,.2);border-radius:10px;padding:12px 16px}
-.pli-b{background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.25);border-radius:10px;padding:12px 16px}
-.lock-box{border-radius:8px;padding:8px 14px;font-size:12px;margin-bottom:12px}
-.ep{background:var(--surf);border-bottom:1px solid var(--bdr);padding:16px 20px}
-.rb{background:var(--card);border:1px solid rgba(20,184,166,.3);border-radius:10px;padding:12px 16px}
-.hbar{display:flex;gap:3px;align-items:flex-end;height:34px}
-.hcol{flex:1;cursor:pointer;border-radius:3px 3px 0 0;background:var(--red);opacity:.4}
-.hcol.on{background:var(--acc);opacity:1}
-.hlbl{display:flex;margin-top:3px}
-.hlbl span{flex:1;font-size:9px;color:var(--dim);text-align:center}
-canvas{display:block;width:100%!important}
-.ratio-bar{display:flex;height:5px;border-radius:3px;overflow:hidden;width:80px;margin-top:3px}
-.tog{display:flex;align-items:center;gap:10px;cursor:pointer}
-.tog-track{width:40px;height:22px;border-radius:11px;background:var(--dim);position:relative;transition:background .2s;flex-shrink:0}
-.tog-track.on{background:var(--acc)}
-.tog-knob{width:16px;height:16px;border-radius:50%;background:#fff;position:absolute;top:3px;left:3px;transition:transform .2s}
-.tog-track.on .tog-knob{transform:translateX(18px)}
-.sep{height:1px;background:var(--bdr);margin:12px 0}
-.col-group{border-left:2px solid;padding-left:8px}
-footer{border-top:1px solid var(--bdr);padding:14px 24px;margin-top:32px}
-
-/* ══════════════════════════════════════════
-   MOBILE APP STYLES  (≤ 700 px)
-══════════════════════════════════════════ */
-@media(max-width:700px){
-
-  /* ── Body: room for bottom nav ── */
-  body{padding-bottom:72px;font-size:15px}
-
-  /* ── Header: compact single line ── */
-  header{padding:0 14px;position:sticky;top:0;z-index:200}
-  .hr{height:52px;flex-wrap:nowrap}
-  .hr > div:first-child > div:first-child{width:30px;height:30px;font-size:15px;border-radius:8px}
-  .hr > div:first-child > div:last-child > div:first-child{font-size:16px}
-  .hr > div:last-child{display:none}          /* hide "fully offline" badge */
-
-  /* ── Hide top nav, use bottom nav instead ── */
-  nav{display:none}
-  #bottom-nav{
-    display:flex!important;
-    position:fixed;bottom:0;left:0;right:0;
-    background:var(--surf);border-top:1px solid var(--bdr);
-    z-index:300;height:64px;
-    padding-bottom:env(safe-area-inset-bottom,0px);
-  }
-  .bnav-btn{
-    flex:1;display:flex;flex-direction:column;align-items:center;
-    justify-content:center;gap:3px;border:none;background:transparent;
-    color:var(--mut);font-size:10px;font-weight:600;cursor:pointer;
-    font-family:inherit;padding:8px 0;transition:color .15s;
-  }
-  .bnav-btn .bicon{font-size:22px;line-height:1}
-  .bnav-btn.on{color:var(--acc)}
-
-  /* ── Main padding ── */
-  main{padding:12px 10px}
-  .pg{gap:14px}
-
-  /* ── Cards ── */
-  .card{padding:14px 12px;border-radius:14px}
-  .ct{font-size:16px}
-
-  /* ── Inputs & selects: bigger tap targets ── */
-  input,select{padding:12px 14px;font-size:15px;border-radius:10px}
-  .lbl{font-size:12px;margin-bottom:6px}
-
-  /* ── Buttons ── */
-  .btn{padding:13px 20px;font-size:15px;border-radius:10px;width:100%;display:block;text-align:center}
-  .btn-sm{padding:8px 14px;font-size:13px;width:auto;display:inline-block}
-  .btn-del{width:auto!important;display:inline-block!important}
-
-  /* ── KPI grids ── */
-  .g2,.g3,.g4,.g8,.gauto{grid-template-columns:1fr 1fr!important;gap:10px}
-  #corpus-kpis,#nps-kpis{grid-template-columns:1fr 1fr!important}
-  .kpi{padding:12px}
-  .kl{font-size:10px}
-  .kv{font-size:15px!important}
-
-  /* ── Expense form: full single column ── */
-  #exp-form-grid{
-    display:grid!important;
-    grid-template-columns:1fr 1fr!important;
-    row-gap:12px;column-gap:10px
-  }
-  #exp-form-grid > div:nth-child(3),
-  #exp-form-grid > div:nth-child(4){grid-column:1/-1}
-  #exp-form-grid > button{grid-column:1/-1;margin-top:0!important}
-
-  /* ── Salary form ── */
-  #sal-form-grid{
-    display:grid!important;
-    grid-template-columns:1fr 1fr!important;
-    row-gap:12px;column-gap:10px
-  }
-  #sal-form-grid > div:nth-child(3){grid-column:1/-1}
-  #sal-form-grid > button{grid-column:1/-1;margin-top:0!important}
-
-  /* ── Ledger layout: single column ── */
-  #ledger-layout{grid-template-columns:1fr!important;gap:14px}
-
-  /* ── Search bar ── */
-  #search{width:100%!important;margin-top:8px}
-  #ledger-layout > div:first-child > div:first-child{flex-direction:column;align-items:flex-start!important;gap:6px}
-
-  /* ── Portfolio: 1 column each card full width ── */
-  #portfolio-grid{grid-template-columns:1fr!important;gap:12px}
-
-  /* ── Small fields ── */
-  #small-fields-grid{grid-template-columns:1fr 1fr!important;gap:10px}
-
-  /* ── Needs form ── */
-  #needs-form-grid{
-    display:grid!important;
-    grid-template-columns:1fr 1fr!important;
-    row-gap:12px;column-gap:10px
-  }
-  #needs-form-grid > div:nth-child(2),
-  #needs-form-grid > div:nth-child(5){grid-column:1/-1}
-  #needs-form-grid > button{grid-column:1/-1;margin-top:0!important}
-
-  /* ── PLI form ── */
-  #pli-form-grid{
-    display:grid!important;
-    grid-template-columns:1fr 1fr!important;
-    row-gap:12px;column-gap:10px
-  }
-  #pli-form-grid > div:nth-child(1){grid-column:1/-1}
-  #pli-form-grid > button{grid-column:1/-1;margin-top:0!important}
-
-  /* ── Year edit panel ── */
-  .edit-yr-grid{grid-template-columns:1fr 1fr!important;gap:10px}
-  .ep{padding:12px}
-
-  /* ── Retirement benefits ── */
-  #ret-ben-fields > div:first-child{grid-template-columns:1fr 1fr!important}
-
-  /* ── Tables: horizontal scroll ── */
-  .card > div[style*="overflow-x"]{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  table{font-size:12px;min-width:480px}
-  th,td{padding:8px 8px;white-space:nowrap}
-  td input[type="number"]{width:72px!important}
-
-  /* ── Charts ── */
-  canvas{height:140px!important}
-
-  /* ── Month picker buttons ── */
-  .nr .nb,.nr button{padding:7px 10px;font-size:12px}
-
-  /* ── Tab buttons (+ Expense / + Income) ── */
-  #tab-exp-btn,#tab-sal-btn{flex:1;text-align:center;padding:10px}
-
-  /* ── Rebalance g2 ── */
-  .rb .g2{grid-template-columns:1fr!important}
-
-  /* ── Footer ── */
-  footer{display:none}
-
-  /* ── Install banner ── */
-  #install-banner{bottom:80px!important;font-size:13px;padding:10px 18px}
-
-  /* ── CORPUS SPECIFIC FIXES ── */
-
-  /* Portfolio 4-col → 1 col (each bucket full width) */
-  #portfolio-grid{grid-template-columns:1fr!important}
-
-  /* Each bucket inner 2-col stays 2-col (fine on mobile) */
-  .eq-b > div:last-child,
-  .dt-b > div:last-child,
-  .gpf-b > div:last-child,
-  .emg-b > div:last-child{grid-template-columns:1fr 1fr!important}
-
-  /* Small fields: 2 col */
-  #small-fields-grid{grid-template-columns:1fr 1fr!important}
-
-  /* Retirement benefits header: stack vertically */
-  #ret-ben-header{flex-direction:column!important;align-items:flex-start!important;gap:10px}
-
-  /* Retirement benefits fields: 1 col */
-  #ret-ben-fields > div:first-child{
-    display:grid!important;
-    grid-template-columns:1fr 1fr!important;
-    gap:10px
-  }
-
-  /* Corpus chart subtitle: wrap text */
-  #pg-corpus .cs{word-break:break-word;line-height:1.5}
-
-  /* Year table: proper horizontal scroll */
-  #yr-table{min-width:700px;font-size:11px}
-  #yr-table th,#yr-table td{padding:6px 7px;white-space:nowrap}
-
-  /* NPS inputs grid */
-  .gauto{grid-template-columns:1fr 1fr!important}
-
-  /* NPS KPI 2-col */
-  #nps-kpis{grid-template-columns:1fr 1fr!important;margin-top:10px}
-
-  /* PLI table: horizontal scroll */
-  #pli-table{min-width:700px}
-
-  /* Needs table */
-  #needs-table{min-width:480px}
-
-  /* Corpus page top-level gaps */
-  #pg-corpus{gap:12px!important}
-
-  /* Corpus KPIs 2-col */
-  #corpus-kpis{grid-template-columns:1fr 1fr!important;gap:10px}
-  #corpus-kpis .kpi:last-child{grid-column:1/-1;background:rgba(20,184,166,.07);border-color:rgba(20,184,166,.3)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#09090f;--card:#13141c;--surf:#1a1b26;--bdr:#252636;
+  --acc:#f5a623;--grn:#22c55e;--red:#ef4444;--blu:#3b82f6;
+  --pur:#a855f7;--tel:#14b8a6;--orn:#f97316;--pink:#ec4899;--lime:#84cc16;
+  --mut:#5a5f7a;--dim:#2a2c3e;--txt:#e8eaf0;--nav-h:64px;
 }
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,sans-serif;font-size:15px;display:flex;flex-direction:column}
+
+/* HEADER */
+.hdr{background:var(--card);border-bottom:1px solid var(--bdr);padding:0 16px;flex-shrink:0;height:52px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-ico{width:32px;height:32px;border-radius:8px;background:var(--acc);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;color:#000}
+.logo-t{font-size:18px;font-weight:800;letter-spacing:-.03em}
+.logo-s{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin-top:1px}
+.offline{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--mut)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--grn)}
+
+/* SCROLL */
+.scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:14px 12px calc(var(--nav-h) + 16px + env(safe-area-inset-bottom,0px))}
+.page{display:none;flex-direction:column;gap:14px}
+.page.on{display:flex}
+
+/* BOTTOM NAV */
+.bnav-bar{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:var(--card);border-top:1px solid var(--bdr);display:flex;z-index:200;padding-bottom:env(safe-area-inset-bottom,0px)}
+.bnav{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:transparent;color:var(--mut);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;padding:8px;transition:color .15s}
+.bnav .bi{font-size:22px;line-height:1;transition:transform .15s}
+.bnav.on{color:var(--acc)}
+.bnav.on .bi{transform:scale(1.15)}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:16px}
+.ct{font-size:15px;font-weight:700;margin-bottom:4px}
+.cs{font-size:11px;color:var(--mut);margin-bottom:12px;line-height:1.5}
+
+/* FORM */
+.lbl{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-weight:600}
+input,select{width:100%;background:var(--surf);border:1px solid var(--bdr);border-radius:10px;padding:12px 14px;color:var(--txt);font-size:15px;font-family:inherit;-webkit-appearance:none}
+input:focus,select:focus{outline:none;border-color:rgba(245,166,35,.6);box-shadow:0 0 0 3px rgba(245,166,35,.1)}
+input[readonly]{color:var(--mut)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+
+/* BUTTONS */
+.btn{display:block;width:100%;padding:14px;border-radius:12px;border:none;cursor:pointer;font-weight:700;font-size:15px;background:var(--acc);color:#000;font-family:inherit;transition:transform .1s,opacity .1s}
+.btn:active{transform:scale(.97)}
+.btn-del{background:none;border:none;color:var(--mut);font-size:20px;padding:4px 8px;cursor:pointer;flex-shrink:0;line-height:1}
+
+/* SEGMENT */
+.seg{display:flex;background:var(--surf);border-radius:12px;padding:4px;gap:4px;margin-bottom:14px}
+.seg-btn{flex:1;padding:10px 8px;border:none;border-radius:9px;cursor:pointer;font-weight:600;font-size:14px;background:transparent;color:var(--mut);font-family:inherit;transition:all .15s}
+.seg-btn.on{background:var(--acc);color:#000}
+
+/* KPIs */
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi{background:var(--surf);border:1px solid var(--bdr);border-radius:12px;padding:12px 14px}
+.kl{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+.kv{font-size:18px;font-weight:800;font-family:'Courier New',monospace}
+.kpi.wide{grid-column:1/-1}
+.kpi.acc{border-color:rgba(245,166,35,.3);background:rgba(245,166,35,.06)}
+
+/* TRANSACTIONS */
+.txn{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--bdr)}
+.txn:last-child{border-bottom:none}
+.txn-ico{width:40px;height:40px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:17px}
+.txn-body{flex:1;min-width:0}
+.txn-cat{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.txn-desc{font-size:12px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.txn-right{text-align:right;flex-shrink:0}
+.txn-amt{font-weight:700;font-size:15px;font-family:'Courier New',monospace}
+.txn-date{font-size:11px;color:var(--mut);margin-top:2px}
+
+/* CAT BARS */
+.cat-row{margin-bottom:11px}
+.cat-top{display:flex;justify-content:space-between;margin-bottom:4px;font-size:13px}
+.cat-bar{height:5px;border-radius:3px;background:var(--surf);overflow:hidden}
+.cat-fill{height:100%;border-radius:3px}
+
+/* MONTH STRIP */
+.mstrip{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.mstrip::-webkit-scrollbar{display:none}
+.mbtn{flex-shrink:0;padding:7px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:12px;background:var(--surf);color:var(--mut);font-family:inherit}
+.mbtn.on{background:var(--acc);color:#000}
+
+/* HEAT */
+.heat{display:flex;gap:3px;align-items:flex-end;height:32px;margin:10px 0 2px}
+.hcol{flex:1;border-radius:3px 3px 0 0;background:var(--red);opacity:.35;cursor:pointer;min-height:3px}
+.hcol.on{background:var(--acc);opacity:1}
+.hlbl{display:flex}
+.hlbl span{flex:1;font-size:9px;color:var(--mut);text-align:center}
+
+/* EMPTY */
+.empty{text-align:center;padding:32px 16px;color:var(--mut)}
+.empty .ei{font-size:36px;margin-bottom:8px}
+
+/* ALLOC BAR */
+.abar{display:flex;height:10px;border-radius:6px;overflow:hidden;gap:2px;margin:10px 0 8px}
+.aseg{height:100%;border-radius:3px;transition:width .4s}
+.aleg{display:flex;flex-wrap:wrap;gap:6px 14px}
+.aitem{font-size:11px;color:var(--mut);display:flex;align-items:center;gap:4px}
+.adot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* TOGGLE */
+.tog{display:flex;align-items:center;gap:8px;cursor:pointer}
+.tog-t{width:44px;height:24px;border-radius:12px;background:var(--dim);position:relative;transition:background .2s;flex-shrink:0}
+.tog-t.on{background:var(--acc)}
+.tog-k{width:18px;height:18px;border-radius:50%;background:#fff;position:absolute;top:3px;left:3px;transition:transform .2s}
+.tog-t.on .tog-k{transform:translateX(20px)}
+
+/* BUCKET SECTION HEADER */
+.bkt-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.bkt-ttl{font-weight:700;font-size:14px}
+.bkt-proj{background:var(--surf);border-radius:10px;padding:10px 14px;margin-top:10px}
+.bkt-pl{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+.bkt-pv{font-size:17px;font-weight:800;font-family:'Courier New',monospace}
+
+/* SUMMARY ROW */
+.sum-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bdr)}
+.sum-row:last-child{border-bottom:none;padding-top:12px}
+.sum-lbl{font-size:13px;color:var(--mut)}
+.sum-val{font-weight:700;font-family:'Courier New',monospace;font-size:14px}
+
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-thumb{background:var(--dim);border-radius:2px}
 </style>
 </head>
 <body>
-<header>
-  <div class="hr">
-    <div style="display:flex;align-items:center;gap:12px">
-      <div style="width:34px;height:34px;border-radius:9px;background:var(--acc);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#000">₹</div>
-      <div>
-        <div style="font-size:19px;font-weight:800;color:#e8eaf0;font-family:Georgia,serif;letter-spacing:-.02em">FinSuite</div>
-        <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em">Personal Finance</div>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:8px">
-      <div style="width:6px;height:6px;border-radius:50%;background:var(--grn)"></div>
-      <span style="font-size:11px;color:var(--mut)">Fully offline — no internet needed</span>
-    </div>
-  </div>
-</header>
-<nav>
-  <div class="nr">
-    <button class="nb on" onclick="switchTab('ledger')">📒 Monthly Ledger</button>
-    <button class="nb" onclick="switchTab('corpus')">📈 Corpus Timeline</button>
-  </div>
-</nav>
 
-<!-- BOTTOM NAV (mobile only) -->
-<div id="bottom-nav" style="display:none">
-  <button class="bnav-btn on" id="bnav-ledger" onclick="switchTab('ledger','bnav-ledger')">
-    <span class="bicon">📒</span>Ledger
-  </button>
-  <button class="bnav-btn" id="bnav-corpus" onclick="switchTab('corpus','bnav-corpus')">
-    <span class="bicon">📈</span>Corpus
-  </button>
-</div>
-<main>
-
-<!-- ══════════════ LEDGER ══════════════ -->
-<div id="pg-ledger" class="pg on">
-  <div class="card">
-    <div id="month-nav"></div>
-    <div class="hbar" id="heat-bar"></div>
-    <div class="hlbl" id="heat-lbl"></div>
+<div class="hdr">
+  <div class="logo">
+    <div class="logo-ico">₹</div>
+    <div><div class="logo-t">FinSuite</div><div class="logo-s">Personal Finance</div></div>
   </div>
-  <div id="ledger-kpis" class="g4"></div>
-  <div class="card">
-    <div style="display:flex;gap:8px;margin-bottom:14px">
-      <button class="nb on" id="tab-exp-btn" onclick="setAddTab('exp')">+ Expense</button>
-      <button class="nb" id="tab-sal-btn" onclick="setAddTab('sal')">+ Income / Salary</button>
-    </div>
-    <div id="frm-exp">
-      <div id="exp-form-grid" style="display:grid;grid-template-columns:130px 130px 160px 1fr auto;gap:10px;align-items:end">
-        <div><div class="lbl">Date</div><input type="date" id="exp-date"/></div>
-        <div><div class="lbl">Amount ₹</div><input type="number" id="exp-amt" placeholder="0"/></div>
-        <div><div class="lbl">Category</div><select id="exp-cat"></select></div>
-        <div><div class="lbl">Description</div><input type="text" id="exp-desc" placeholder="What was this for?"/></div>
-        <button class="btn" onclick="addExp()" style="margin-top:20px">Add</button>
-      </div>
-    </div>
-    <div id="frm-sal" style="display:none">
-      <div id="sal-form-grid" style="display:grid;grid-template-columns:130px 130px 1fr auto;gap:10px;align-items:end">
-        <div><div class="lbl">Date</div><input type="date" id="sal-date"/></div>
-        <div><div class="lbl">Amount ₹</div><input type="number" id="sal-amt" placeholder="0"/></div>
-        <div><div class="lbl">Note</div><input type="text" id="sal-note" value="Salary"/></div>
-        <button class="btn" onclick="addSal()" style="margin-top:20px">Add</button>
-      </div>
-    </div>
-  </div>
-  <div id="ledger-layout" style="display:grid;grid-template-columns:1fr 300px;gap:20px">
-    <div class="card" style="padding:0;overflow:hidden">
-      <div style="padding:14px 20px;border-bottom:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center">
-        <div class="ct" id="ledger-title">Ledger</div>
-        <input type="text" id="search" placeholder="Search…" oninput="renderLedger()" style="width:180px;font-size:13px;padding:6px 12px"/>
-      </div>
-      <div style="overflow-x:auto">
-        <table>
-          <thead><tr><th>Date</th><th></th><th>Category</th><th>Description</th><th>Amount</th><th>Balance</th><th></th></tr></thead>
-          <tbody id="ledger-body"></tbody>
-          <tfoot><tr style="background:var(--surf)">
-            <td colspan="4" style="padding:8px 11px;color:var(--mut);font-weight:600;font-size:11px">MONTH TOTAL</td>
-            <td id="ledger-net" class="mn" style="padding:8px 11px"></td><td colspan="2"></td>
-          </tr></tfoot>
-        </table>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:14px">
-      <div class="card"><div class="ct" style="margin-bottom:12px">Spend by Category</div><div id="cat-brk"></div></div>
-      <div class="card"><div class="ct" style="margin-bottom:10px">Monthly Trend</div><canvas id="trend-c" height="150"></canvas></div>
-    </div>
-  </div>
+  <div class="offline"><div class="dot"></div>Offline</div>
 </div>
 
-<!-- ══════════════ CORPUS ══════════════ -->
-<div id="pg-corpus" class="pg">
+<div class="scroll">
 
-  <!-- Setup -->
-  <div class="card">
-    <div class="ct">Portfolio Setup</div>
-    <div class="cs">Step-up SIP increases monthly contribution by the set % every year automatically</div>
-    <div id="portfolio-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;margin-bottom:16px">
-      <div class="eq-b">
-        <div style="color:var(--grn);font-weight:700;font-size:13px;margin-bottom:10px">📈 EQUITY MF</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <div><div class="lbl">Starting Corpus</div><input type="number" id="eq-corp" oninput="sc()"/></div>
-          <div><div class="lbl">Monthly SIP ₹</div><input type="number" id="eq-sip" oninput="sc()"/></div>
-          <div><div class="lbl">Return %</div><input type="number" id="eq-rate" oninput="sc()"/></div>
-          <div><div class="lbl">Step-Up % / yr</div><input type="number" id="eq-step" oninput="sc()" placeholder="0"/></div>
+  <!-- ══ LEDGER ══ -->
+  <div id="pg-ledger" class="page on">
+
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <select id="yr-sel" onchange="selYear=+this.value;render()" style="width:auto;padding:8px 12px;font-size:14px"></select>
+        <span id="month-title" style="font-weight:700;color:var(--acc);font-size:15px"></span>
+      </div>
+      <div class="mstrip" id="mstrip"></div>
+      <div class="heat" id="heat"></div>
+      <div class="hlbl" id="hlbl"></div>
+    </div>
+
+    <div class="kpi-grid" id="l-kpis"></div>
+
+    <div class="card">
+      <div class="seg">
+        <button class="seg-btn on" id="seg-exp" onclick="setTab('exp')">+ Expense</button>
+        <button class="seg-btn" id="seg-sal" onclick="setTab('sal')">+ Income</button>
+      </div>
+      <div id="frm-exp">
+        <div class="g2" style="margin-bottom:10px">
+          <div><div class="lbl">Date</div><input type="date" id="exp-date"/></div>
+          <div><div class="lbl">Amount ₹</div><input type="number" id="exp-amt" placeholder="0" inputmode="numeric"/></div>
+        </div>
+        <div style="margin-bottom:10px"><div class="lbl">Category</div><select id="exp-cat"></select></div>
+        <div style="margin-bottom:12px"><div class="lbl">Description</div><input type="text" id="exp-desc" placeholder="What was this for?"/></div>
+        <button class="btn" onclick="addExp()">Add Expense</button>
+      </div>
+      <div id="frm-sal" style="display:none">
+        <div class="g2" style="margin-bottom:10px">
+          <div><div class="lbl">Date</div><input type="date" id="sal-date"/></div>
+          <div><div class="lbl">Amount ₹</div><input type="number" id="sal-amt" placeholder="0" inputmode="numeric"/></div>
+        </div>
+        <div style="margin-bottom:12px"><div class="lbl">Note</div><input type="text" id="sal-note" value="Salary"/></div>
+        <button class="btn" onclick="addSal()">Add Income</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div class="ct" id="txn-title">Transactions</div>
+        <input type="text" id="search" placeholder="🔍 Search" oninput="render()" style="width:110px;padding:7px 10px;font-size:13px"/>
+      </div>
+      <div id="txn-list"></div>
+    </div>
+
+    <div class="card">
+      <div class="ct" style="margin-bottom:12px">Spend by Category</div>
+      <div id="cat-brk"></div>
+    </div>
+
+  </div>
+
+  <!-- ══ CORPUS ══ -->
+  <div id="pg-corpus" class="page">
+
+    <!-- Grand total -->
+    <div class="kpi wide acc" style="border-radius:16px;padding:18px">
+      <div class="kl">Total Corpus Today</div>
+      <div class="kv" id="grand-today" style="color:var(--acc);font-size:26px">₹0</div>
+      <div style="font-size:12px;color:var(--mut);margin-top:4px" id="grand-proj-lbl"></div>
+    </div>
+
+    <!-- Allocation -->
+    <div class="card">
+      <div class="ct" style="margin-bottom:2px">Allocation Today</div>
+      <div class="abar" id="abar"></div>
+      <div class="aleg" id="aleg"></div>
+    </div>
+
+    <!-- Settings -->
+    <div class="card">
+      <div class="ct" style="margin-bottom:12px">⚙️ Projection Settings</div>
+      <div class="g3">
+        <div><div class="lbl">Age Now</div><input type="number" id="c-age" value="30" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Retire At</div><input type="number" id="c-ret" value="58" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Inflation %</div><input type="number" id="c-infl" value="6" oninput="saveC();renderCorpus()" inputmode="decimal"/></div>
+      </div>
+    </div>
+
+    <!-- Equity -->
+    <div class="card" style="border-color:rgba(34,197,94,.3)">
+      <div class="bkt-hdr"><div class="bkt-ttl" style="color:var(--grn)">📈 Equity MF</div></div>
+      <div class="g2">
+        <div><div class="lbl">Current ₹</div><input type="number" id="eq-corp" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Monthly SIP ₹</div><input type="number" id="eq-sip" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Return %/yr</div><input type="number" id="eq-rate" value="12" oninput="saveC();renderCorpus()" inputmode="decimal"/></div>
+        <div><div class="lbl">Step-up %/yr</div><input type="number" id="eq-step" value="0" oninput="saveC();renderCorpus()" inputmode="decimal"/></div>
+      </div>
+      <div class="bkt-proj" style="background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2)">
+        <div class="bkt-pl">Projected @ Retirement</div>
+        <div class="bkt-pv" id="eq-proj" style="color:var(--grn)">₹0</div>
+      </div>
+    </div>
+
+    <!-- Debt -->
+    <div class="card" style="border-color:rgba(59,130,246,.3)">
+      <div class="bkt-hdr"><div class="bkt-ttl" style="color:var(--blu)">🏦 Debt MF</div></div>
+      <div class="g2">
+        <div><div class="lbl">Current ₹</div><input type="number" id="dt-corp" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Monthly SIP ₹</div><input type="number" id="dt-sip" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Return %/yr</div><input type="number" id="dt-rate" value="7" oninput="saveC();renderCorpus()" inputmode="decimal"/></div>
+        <div><div class="lbl">Step-up %/yr</div><input type="number" id="dt-step" value="0" oninput="saveC();renderCorpus()" inputmode="decimal"/></div>
+      </div>
+      <div class="bkt-proj" style="background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.2)">
+        <div class="bkt-pl">Projected @ Retirement</div>
+        <div class="bkt-pv" id="dt-proj" style="color:var(--blu)">₹0</div>
+      </div>
+    </div>
+
+    <!-- GPF -->
+    <div class="card" style="border-color:rgba(236,72,153,.3)">
+      <div class="bkt-hdr"><div class="bkt-ttl" style="color:var(--pink)">📋 GPF / PPF</div></div>
+      <div class="g2">
+        <div><div class="lbl">Balance ₹</div><input type="number" id="gpf-corp" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Monthly ₹</div><input type="number" id="gpf-sip" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Rate %</div><input type="number" id="gpf-rate" value="7.1" oninput="saveC();renderCorpus()" inputmode="decimal"/></div>
+        <div><div class="lbl">Matures Year</div><input type="number" id="gpf-mat" value="2048" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+      </div>
+      <div class="bkt-proj" style="background:rgba(236,72,153,.07);border:1px solid rgba(236,72,153,.2)">
+        <div class="bkt-pl">Projected @ Retirement</div>
+        <div class="bkt-pv" id="gpf-proj" style="color:var(--pink)">₹0</div>
+      </div>
+    </div>
+
+    <!-- Emergency -->
+    <div class="card" style="border-color:rgba(132,204,22,.3)">
+      <div class="bkt-hdr"><div class="bkt-ttl" style="color:var(--lime)">🛡️ Emergency Fund</div></div>
+      <div class="g2">
+        <div><div class="lbl">Balance ₹</div><input type="number" id="emg-corp" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Monthly Add ₹</div><input type="number" id="emg-sip" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Return % (FD)</div><input type="number" id="emg-rate" value="5" oninput="saveC();renderCorpus()" inputmode="decimal"/></div>
+        <div><div class="lbl">Target ₹</div><input type="number" id="emg-target" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+      </div>
+      <div class="bkt-proj" style="background:rgba(132,204,22,.07);border:1px solid rgba(132,204,22,.2)">
+        <div class="bkt-pl">Projected @ Retirement</div>
+        <div class="bkt-pv" id="emg-proj" style="color:var(--lime)">₹0</div>
+      </div>
+    </div>
+
+    <!-- NPS -->
+    <div class="card" style="border-color:rgba(249,115,22,.3)">
+      <div class="bkt-hdr">
+        <div class="bkt-ttl" style="color:var(--orn)">🏛️ NPS</div>
+        <span style="font-size:11px;color:var(--mut)">🔒 locked</span>
+      </div>
+      <div class="g2">
+        <div><div class="lbl">Corpus ₹</div><input type="number" id="nps-corp" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Monthly ₹</div><input type="number" id="nps-sip" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Eq % (≤75)</div><input type="number" id="nps-eq" value="75" max="75" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Return % (blended)</div><input type="number" id="nps-rate" value="11" oninput="saveC();renderCorpus()" inputmode="decimal"/></div>
+      </div>
+      <div class="bkt-proj" style="background:rgba(249,115,22,.07);border:1px solid rgba(249,115,22,.2)">
+        <div class="bkt-pl">Lumpsum @ Retirement</div>
+        <div class="bkt-pv" id="nps-proj" style="color:var(--orn)">₹0</div>
+      </div>
+    </div>
+
+    <!-- PLI -->
+    <div class="card" style="border-color:rgba(168,85,247,.3)">
+      <div class="bkt-hdr">
+        <div class="bkt-ttl" style="color:var(--pur)">📮 PLI</div>
+        <span style="font-size:11px;color:var(--mut)">🔒 locked</span>
+      </div>
+      <div class="g2">
+        <div><div class="lbl">Current Value ₹</div><input type="number" id="pli-val" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Monthly Premium ₹</div><input type="number" id="pli-prem" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Maturity Year</div><input type="number" id="pli-mat" value="2042" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        <div><div class="lbl">Maturity Value ₹</div><input type="number" id="pli-mv" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+      </div>
+      <div class="bkt-proj" style="background:rgba(168,85,247,.07);border:1px solid rgba(168,85,247,.2)">
+        <div class="bkt-pl">Maturity Payout</div>
+        <div class="bkt-pv" id="pli-proj" style="color:var(--pur)">₹0</div>
+      </div>
+    </div>
+
+    <!-- Retirement Benefits -->
+    <div class="card" style="border-color:rgba(20,184,166,.3)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div class="bkt-ttl" style="color:var(--tel)">🎁 Retirement Benefits</div>
+        <label class="tog" onclick="toggleRet()">
+          <div class="tog-t" id="ret-tog"><div class="tog-k"></div></div>
+          <span style="font-size:12px;color:var(--mut)" id="ret-lbl">Off</span>
+        </label>
+      </div>
+      <div id="ret-fields" style="display:none">
+        <div class="g2" style="margin-bottom:10px">
+          <div><div class="lbl">Gratuity ₹</div><input type="number" id="ret-g" placeholder="0" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+          <div><div class="lbl">Leave Encashment ₹</div><input type="number" id="ret-l" placeholder="0" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+          <div><div class="lbl">PF Payout ₹</div><input type="number" id="ret-p" placeholder="0" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+          <div><div class="lbl">Other ₹</div><input type="number" id="ret-o" placeholder="0" oninput="saveC();renderCorpus()" inputmode="numeric"/></div>
+        </div>
+        <div class="bkt-proj" style="background:rgba(20,184,166,.07);border:1px solid rgba(20,184,166,.2)">
+          <div class="bkt-pl">Total Benefits @ Retirement</div>
+          <div class="bkt-pv" id="ret-total" style="color:var(--tel)">₹0</div>
         </div>
       </div>
-      <div class="dt-b">
-        <div style="color:var(--blu);font-weight:700;font-size:13px;margin-bottom:10px">🏦 DEBT MF</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <div><div class="lbl">Starting Corpus</div><input type="number" id="dt-corp" oninput="sc()"/></div>
-          <div><div class="lbl">Monthly SIP ₹</div><input type="number" id="dt-sip" oninput="sc()"/></div>
-          <div><div class="lbl">Return %</div><input type="number" id="dt-rate" oninput="sc()"/></div>
-          <div><div class="lbl">Step-Up % / yr</div><input type="number" id="dt-step" oninput="sc()" placeholder="0"/></div>
-        </div>
-      </div>
-      <div class="gpf-b">
-        <div style="color:var(--pink);font-weight:700;font-size:13px;margin-bottom:10px">📋 GPF / PPF</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <div><div class="lbl">Current Balance</div><input type="number" id="gpf-corp" oninput="sc()"/></div>
-          <div><div class="lbl">Monthly Contrib ₹</div><input type="number" id="gpf-sip" oninput="sc()"/></div>
-          <div><div class="lbl">Interest Rate %</div><input type="number" id="gpf-rate" oninput="sc()"/></div>
-          <div><div class="lbl">Maturity Year</div><input type="number" id="gpf-mat" oninput="sc()"/></div>
-        </div>
-      </div>
-      <div class="emg-b">
-        <div style="color:var(--lime);font-weight:700;font-size:13px;margin-bottom:10px">🛡️ EMERGENCY FUND</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <div><div class="lbl">Current Balance</div><input type="number" id="emg-corp" oninput="sc()"/></div>
-          <div><div class="lbl">Monthly Add ₹</div><input type="number" id="emg-sip" oninput="sc()"/></div>
-          <div><div class="lbl">Return % (FD/SB)</div><input type="number" id="emg-rate" oninput="sc()"/></div>
-          <div><div class="lbl">Target ₹</div><input type="number" id="emg-target" oninput="sc()"/></div>
-        </div>
-      </div>
     </div>
-    <div id="small-fields-grid" style="display:grid;grid-template-columns:repeat(3,160px);gap:16px">
-      <div><div class="lbl">Inflation Rate %</div><input type="number" id="infl" oninput="sc()"/></div>
-      <div><div class="lbl">Projection Years</div><input type="number" id="pyrs" oninput="sc()"/></div>
-      <div><div class="lbl">Retirement Age</div><input type="number" id="ret-age" oninput="sc()"/></div>
-      <div><div class="lbl">Current Age</div><input type="number" id="cur-age" oninput="sc()"/></div>
-    </div>
-  </div>
 
-  <!-- Retirement Benefits -->
-  <div class="card ret-b" style="border:1px solid rgba(20,184,166,.3)">
-    <div id="ret-ben-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-      <div>
-        <div class="ct">🎁 Retirement Benefits</div>
-        <div class="cs">Gratuity, leave encashment, pension arrears — received as lumpsum at retirement year</div>
-      </div>
-      <label class="tog" onclick="toggleRetBen()">
-        <div class="tog-track" id="ret-tog"><div class="tog-knob"></div></div>
-        <span style="font-size:13px;color:var(--mut)" id="ret-tog-lbl">Disabled</span>
-      </label>
+    <!-- Summary -->
+    <div class="card" style="margin-bottom:4px">
+      <div class="ct" style="margin-bottom:14px">📊 Projected @ Retirement</div>
+      <div id="summary"></div>
     </div>
-    <div id="ret-ben-fields" style="display:none">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px">
-        <div><div class="lbl">Gratuity ₹</div><input type="number" id="ret-gratuity" oninput="sc()" placeholder="0"/></div>
-        <div><div class="lbl">Leave Encashment ₹</div><input type="number" id="ret-leave" oninput="sc()" placeholder="0"/></div>
-        <div><div class="lbl">Provident Fund Payout ₹</div><input type="number" id="ret-pf" oninput="sc()" placeholder="0"/></div>
-        <div><div class="lbl">Other Lumpsum ₹</div><input type="number" id="ret-other" oninput="sc()" placeholder="0"/></div>
-        <div><div class="lbl">Add to</div>
-          <select id="ret-bucket">
-            <option value="equity">Equity</option>
-            <option value="debt">Debt</option>
-            <option value="gpf">GPF</option>
-          </select>
-        </div>
-      </div>
-      <div id="ret-summary" style="margin-top:12px;font-size:13px;color:var(--tel)"></div>
-    </div>
-  </div>
 
-  <!-- KPIs -->
-  <div id="corpus-kpis" class="g8"></div>
-
-  <!-- Chart -->
-  <div class="card">
-    <div class="ct">All Corpus — Growth Projection</div>
-    <div class="cs">Equity (green) · Debt (blue) · GPF (pink) · Emergency (lime) · NPS (orange) · PLI (purple) · Grand Total (teal)</div>
-    <canvas id="corpus-c" height="110"></canvas>
   </div>
+</div>
 
-  <!-- Year table -->
-  <div class="card" style="padding:0;overflow:hidden">
-    <div style="padding:14px 20px;border-bottom:1px solid var(--bdr)">
-      <div class="ct">Year-wise Corpus Tracker — All Buckets</div>
-      <div class="cs">Click any row to edit. Columns show cumulative totals. Step-up SIP auto-applies each year.</div>
-    </div>
-    <div style="overflow-x:auto">
-      <table id="yr-table">
-        <thead>
-          <tr>
-            <th rowspan="2">Year</th>
-            <th rowspan="2" style="color:var(--grn)">Eq<br/>Rate</th>
-            <th rowspan="2" style="color:var(--blu)">Dt<br/>Rate</th>
-            <th rowspan="2" style="color:var(--grn)">Eq SIP</th>
-            <th rowspan="2" style="color:var(--blu)">Dt SIP</th>
-            <th rowspan="2" style="color:var(--grn)">Equity</th>
-            <th rowspan="2" style="color:var(--blu)">Debt</th>
-            <th rowspan="2" style="color:var(--lime)">Emergency</th>
-            <th colspan="4" style="color:var(--tel);border-bottom:1px solid var(--bdr);text-align:center">Cumulative Subtotals</th>
-            <th rowspan="2" style="color:var(--tel)">Ratio Eq:Dt</th>
-            <th rowspan="2" style="color:var(--pink)">GPF 🔒</th>
-            <th rowspan="2" style="color:var(--orn)">NPS 🔒<br/><span style="font-size:9px;font-weight:400">lump @ retire</span></th>
-            <th rowspan="2" style="color:var(--pur)">PLI 🔒<br/><span style="font-size:9px;font-weight:400">lump @ maturity</span></th>
-            <th rowspan="2" style="color:var(--tel)">GRAND<br/>TOTAL</th>
-            <th rowspan="2" style="color:var(--red)">Events</th>
-            <th rowspan="2">▼</th>
-          </tr>
-          <tr>
-            <th style="color:var(--tel)">Eq+Dt</th>
-            <th style="color:var(--tel)">Eq+Dt+Emg</th>
-            <th style="color:var(--acc)">Eq+Dt+GPF</th>
-            <th style="color:var(--acc)">Eq+Dt+GPF+Emg</th>
-          </tr>
-        </thead>
-        <tbody id="yr-body"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Needs -->
-  <div class="card">
-    <div class="ct">Future Needs / Big Expenses</div>
-    <div class="cs">Enter today's cost — auto inflation adjusted</div>
-    <div id="needs-form-grid" style="display:grid;grid-template-columns:50px 2fr 1fr 1fr 160px auto;gap:10px;align-items:end;margin-bottom:14px">
-      <div><div class="lbl">Icon</div><input type="text" id="n-icon" value="🎯" style="text-align:center;font-size:18px;padding:8px 4px"/></div>
-      <div><div class="lbl">Name</div><input type="text" id="n-name" placeholder="e.g. Child Education"/></div>
-      <div><div class="lbl">In Year #</div><input type="number" id="n-yr" value="10"/></div>
-      <div><div class="lbl">Today's Cost ₹</div><input type="number" id="n-amt" value="0"/></div>
-      <div><div class="lbl">Deduct From</div>
-        <select id="n-from">
-          <option value="equity">Equity</option>
-          <option value="debt">Debt</option>
-          <option value="gpf">GPF</option>
-          <option value="emergency">Emergency</option>
-        </select>
-      </div>
-      <button class="btn" onclick="addNeed()" style="margin-top:20px">+ Add</button>
-    </div>
-    <table id="needs-table">
-      <thead><tr><th></th><th>Name</th><th>Year</th><th>Today's Cost</th><th>Inflation-Adj Cost</th><th>From</th><th></th></tr></thead>
-      <tbody id="needs-body"></tbody>
-    </table>
-  </div>
-
-  <!-- NPS -->
-  <div class="card nps-b" style="border:1px solid rgba(247,144,35,.25)">
-    <div class="ct">🏛️ NPS — National Pension System</div>
-    <div class="cs">Locked until 2048 — contributions only, no premature withdrawal</div>
-    <div class="lock-box" style="background:rgba(247,144,35,.08);border:1px solid rgba(247,144,35,.25);color:var(--orn)">
-      🔒 NPS locked until <b>2048</b>. Equity max 75%. Debt = 100% − Equity auto.
-    </div>
-    <div class="gauto">
-      <div><div class="lbl">Current Corpus ₹</div><input type="number" id="nps-corp" oninput="sn()"/></div>
-      <div><div class="lbl">Monthly Contribution ₹</div><input type="number" id="nps-sip" oninput="sn()"/></div>
-      <div><div class="lbl">Equity Alloc % (max 75)</div><input type="number" id="nps-eq" oninput="sn()" max="75" min="0"/></div>
-      <div><div class="lbl">Debt Alloc % (auto)</div><input type="number" id="nps-dt" readonly/></div>
-      <div><div class="lbl">Equity Return %</div><input type="number" id="nps-er" oninput="sn()"/></div>
-      <div><div class="lbl">Debt Return %</div><input type="number" id="nps-dr" oninput="sn()"/></div>
-      <div><div class="lbl">Maturity Year 🔒</div>
-        <div style="background:var(--surf);border:1px solid rgba(247,144,35,.4);border-radius:8px;padding:9px 12px;color:var(--orn);font-weight:700;font-size:15px">2048 🔒</div>
-      </div>
-    </div>
-    <div id="nps-kpis" class="g4" style="margin-top:14px"></div>
-  </div>
-
-  <!-- PLI -->
-  <div class="card pli-b">
-    <div class="ct">📮 PLI — Postal Life Insurance</div>
-    <div class="cs">Locked — add premiums only. Bonus = fixed ₹ per ₹1000 Sum Assured per year from start date.</div>
-    <div class="lock-box" style="background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.25);color:var(--pur)">
-      🔒 No premature surrender. At maturity: Sum Assured + Total Accumulated Bonus paid out.
-    </div>
-    <div id="pli-form-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 80px 80px auto;gap:10px;align-items:end;margin-bottom:14px">
-      <div><div class="lbl">Policy Name</div><input type="text" id="p-name" placeholder="e.g. PLI Endowment"/></div>
-      <div><div class="lbl">Monthly Premium ₹</div><input type="number" id="p-prem" value="2000"/></div>
-      <div><div class="lbl">Sum Assured ₹</div><input type="number" id="p-sa" value="0"/></div>
-      <div><div class="lbl">Coupon ₹/1000/yr</div><input type="number" id="p-coup" value="55"/></div>
-      <div><div class="lbl">Start Month</div><select id="p-sm"></select></div>
-      <div><div class="lbl">Start Year</div><input type="number" id="p-sy" value="2020"/></div>
-      <div><div class="lbl">Maturity Year</div><input type="number" id="p-my" value="2040"/></div>
-      <button class="btn" onclick="addPLI()" style="margin-top:20px">+ Add</button>
-    </div>
-    <table id="pli-table">
-      <thead><tr>
-        <th>Policy</th><th>Premium/mo</th><th>Current Corpus</th><th>Sum Assured</th>
-        <th>Coupon/1000/yr</th><th>Start Date</th><th>Matures</th>
-        <th>Annual Bonus</th><th>Maturity Value</th><th>Status</th><th></th>
-      </tr></thead>
-      <tbody id="pli-body"></tbody>
-    </table>
-    <div style="margin-top:10px;font-size:12px;color:var(--mut)">
-      💡 Maturity Value = Sum Assured + (Coupon × SA/1000 × exact months ÷ 12). Linear accrual, no compounding.
-    </div>
-  </div>
-
-</div><!-- end corpus page -->
-</main>
-<footer>
-  <div style="max-width:1600px;margin:0 auto;display:flex;justify-content:space-between;font-size:12px;color:var(--dim)">
-    <span>FinSuite — data in browser localStorage · 100% offline · no internet needed</span>
-    <span>⚠️ Educational use only. Not financial advice.</span>
-  </div>
-</footer>
+<div class="bnav-bar">
+  <button class="bnav on" id="bnav-ledger" onclick="goTab('ledger')"><span class="bi">📒</span>Ledger</button>
+  <button class="bnav" id="bnav-corpus" onclick="goTab('corpus')"><span class="bi">📈</span>Corpus</button>
+</div>
 
 <script>
-// ═══════════════════════════════ CONSTANTS ═══════════════════════════════════
 const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const CATS=['Food','Transport','Rent','Utilities','Shopping','Medical','Entertainment','Education','Investment','EMI','Other'];
-const now=new Date(), THIS_Y=now.getFullYear(), THIS_M=now.getMonth();
+const CICONS={Food:'🍛',Transport:'🚗',Rent:'🏠',Utilities:'💡',Shopping:'🛍️',Medical:'💊',Entertainment:'🎬',Education:'📚',Investment:'📈',EMI:'🏦',Other:'📌'};
+const CCOLS=['#f97316','#3b82f6','#ec4899','#14b8a6','#a855f7','#22c55e','#ef4444','#f5a623','#84cc16','#6366f1','#6b7280'];
+const now=new Date(),THIS_Y=now.getFullYear(),THIS_M=now.getMonth();
+
 const fmt=n=>{if(!n&&n!==0)return'₹0';const a=Math.abs(n),s=n<0?'-':'';if(a>=1e7)return s+'₹'+(a/1e7).toFixed(2)+'Cr';if(a>=1e5)return s+'₹'+(a/1e5).toFixed(2)+'L';return s+'₹'+Math.round(a).toLocaleString('en-IN');};
 const ld=(k,fb)=>{try{const r=localStorage.getItem(k);return r?JSON.parse(r):fb}catch{return fb}};
 const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
 const el=id=>document.getElementById(id);
-const badge=(t,c)=>`<span class="bdg" style="background:${c}22;color:${c};border:1px solid ${c}44">${t}</span>`;
-const todayStr=()=>new Date().toISOString().slice(0,10);
+const today=()=>new Date().toISOString().slice(0,10);
+const gk=(y,m)=>`${y}-${String(m+1).padStart(2,'0')}`;
 
-// ═══════════════════════════════ STATE ═══════════════════════════════════════
-let expenses=ld('fin_exp',[]), salaries=ld('fin_sal',[]);
-let selYear=THIS_Y, selMonth=THIS_M, addTab='exp', editYr=null;
+let expenses=ld('fs_exp',[]),salaries=ld('fs_sal',[]);
+let selYear=THIS_Y,selMonth=THIS_M,addTab='exp';
+let C=ld('fs_cfg',{age:30,ret:58,infl:6,eqCorp:0,eqSip:0,eqRate:12,eqStep:0,dtCorp:0,dtSip:0,dtRate:7,dtStep:0,gpfCorp:0,gpfSip:0,gpfRate:7.1,gpfMat:2048,emgCorp:0,emgSip:0,emgRate:5,emgTarget:0,npsCorp:0,npsSip:0,npsEq:75,npsRate:11,pliVal:0,pliPrem:0,pliMat:2042,pliMv:0,retEnabled:false,retG:0,retL:0,retP:0,retO:0});
 
-let C=ld('fin_cfg4',{
-  eqCorp:300000, eqSip:15000, eqRate:13, eqStep:5,
-  dtCorp:200000, dtSip:10000, dtRate:7,  dtStep:0,
-  gpfCorp:100000,gpfSip:5000, gpfRate:7.1,gpfMat:2048,
-  emgCorp:50000, emgSip:3000, emgRate:5, emgTarget:300000,
-  infl:6, pyrs:25, retAge:58, currentAge:30
-});
-let yrOvr=ld('fin_yr_ovr4',{});
-let needs=ld('fin_needs4',[
-  {id:1,name:'Child Education',year:15,amount:3000000,icon:'🎓',from:'equity'},
-  {id:2,name:'Child Marriage',year:22,amount:2000000,icon:'💍',from:'equity'},
-  {id:3,name:'Home Renovation',year:10,amount:1000000,icon:'🏠',from:'debt'}
-]);
-let npsCfg=ld('fin_nps3',{corp:0,sip:5000,eqAlloc:75,eqRate:12,dtRate:7});
-let pliPolicies=ld('fin_pli3',[
-  {id:1,name:'PLI Policy 1',prem:3000,corp:0,coup:55,sm:4,sy:2018,my:2042,sa:500000}
-]);
-let retBen=ld('fin_ret',{enabled:false,gratuity:0,leave:0,pf:0,other:0,bucket:'debt'});
-
-// ═══════════════════════════════ TAB ═════════════════════════════════════════
-function switchTab(t,bnavId){
-  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-  document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('on'));
-  el('pg-'+t).classList.add('on');
-  if(event&&event.target) event.target.classList.add('on');
-  if(bnavId) el(bnavId).classList.add('on');
-  else el('bnav-'+t)&&el('bnav-'+t).classList.add('on');
-  if(t==='corpus') renderCorpus();
+function goTab(t){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.bnav').forEach(b=>b.classList.remove('on'));
+  el('pg-'+t).classList.add('on');el('bnav-'+t).classList.add('on');
+  if(t==='corpus')renderCorpus();
+  document.querySelector('.scroll').scrollTop=0;
 }
-function setAddTab(t){
+
+function setTab(t){
   addTab=t;
   el('frm-exp').style.display=t==='exp'?'block':'none';
   el('frm-sal').style.display=t==='sal'?'block':'none';
-  el('tab-exp-btn').className='nb'+(t==='exp'?' on':'');
-  el('tab-sal-btn').className='nb'+(t==='sal'?' on':'');
+  el('seg-exp').className='seg-btn'+(t==='exp'?' on':'');
+  el('seg-sal').className='seg-btn'+(t==='sal'?' on':'');
 }
 
-// ═══════════════════════════════ INIT ════════════════════════════════════════
-function initDOM(){
-  // Category select
+function init(){
   const cs=el('exp-cat');
   CATS.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;cs.appendChild(o);});
-  // PLI month select
-  const ms=el('p-sm');
-  MONTHS.forEach((m,i)=>{const o=document.createElement('option');o.value=i+1;o.textContent=m;ms.appendChild(o);});
-  // Dates
-  el('exp-date').value=todayStr(); el('sal-date').value=todayStr();
-  // Load corpus fields
-  loadCorpusInputs(); loadNPSInputs(); loadRetBen();
+  const ys=el('yr-sel');
+  for(let y=THIS_Y-3;y<=THIS_Y+1;y++){const o=document.createElement('option');o.value=y;o.textContent=y;if(y===THIS_Y)o.selected=true;ys.appendChild(o);}
+  el('exp-date').value=today();el('sal-date').value=today();
+  loadC();render();
 }
 
-// ═══════════════════════════════ SAVE HELPERS ════════════════════════════════
-function sc(){
-  C={
-    eqCorp:+el('eq-corp').value||0, eqSip:+el('eq-sip').value||0,
-    eqRate:+el('eq-rate').value||12,eqStep:+el('eq-step').value||0,
-    dtCorp:+el('dt-corp').value||0, dtSip:+el('dt-sip').value||0,
-    dtRate:+el('dt-rate').value||7, dtStep:+el('dt-step').value||0,
-    gpfCorp:+el('gpf-corp').value||0,gpfSip:+el('gpf-sip').value||0,
-    gpfRate:+el('gpf-rate').value||7.1,gpfMat:+el('gpf-mat').value||2048,
-    emgCorp:+el('emg-corp').value||0,emgSip:+el('emg-sip').value||0,
-    emgRate:+el('emg-rate').value||5,emgTarget:+el('emg-target').value||0,
-    infl:+el('infl').value||6, pyrs:Math.min(+el('pyrs').value||25,40),
-    retAge:+el('ret-age').value||58,
-    currentAge:+el('cur-age').value||30
-  };
-  sv('fin_cfg4',C); renderCorpus();
-}
-function sn(){
-  const eq=Math.min(75,Math.max(0,+el('nps-eq').value||75));
-  npsCfg={corp:+el('nps-corp').value||0,sip:+el('nps-sip').value||0,
-    eqAlloc:eq,eqRate:+el('nps-er').value||12,dtRate:+el('nps-dr').value||7};
-  el('nps-dt').value=100-eq;
-  sv('fin_nps3',npsCfg); renderCorpus();
-}
-function loadCorpusInputs(){
-  ['eq-corp','eq-sip','eq-rate','eq-step','dt-corp','dt-sip','dt-rate','dt-step',
-   'gpf-corp','gpf-sip','gpf-rate','gpf-mat','emg-corp','emg-sip','emg-rate','emg-target',
-   'infl','pyrs','ret-age','cur-age'].forEach(id=>{
-    const key=id.replace(/-([a-z])/g,(_,c)=>c.toUpperCase()).replace('-','');
-    const keyMap={'eqCorp':'eqCorp','eqSip':'eqSip','eqRate':'eqRate','eqStep':'eqStep',
-      'dtCorp':'dtCorp','dtSip':'dtSip','dtRate':'dtRate','dtStep':'dtStep',
-      'gpfCorp':'gpfCorp','gpfSip':'gpfSip','gpfRate':'gpfRate','gpfMat':'gpfMat',
-      'emgCorp':'emgCorp','emgSip':'emgSip','emgRate':'emgRate','emgTarget':'emgTarget',
-      'infl':'infl','pyrs':'pyrs','retAge':'retAge'};
-    const fieldMap={'eq-corp':'eqCorp','eq-sip':'eqSip','eq-rate':'eqRate','eq-step':'eqStep',
-      'dt-corp':'dtCorp','dt-sip':'dtSip','dt-rate':'dtRate','dt-step':'dtStep',
-      'gpf-corp':'gpfCorp','gpf-sip':'gpfSip','gpf-rate':'gpfRate','gpf-mat':'gpfMat',
-      'emg-corp':'emgCorp','emg-sip':'emgSip','emg-rate':'emgRate','emg-target':'emgTarget',
-      'infl':'infl','pyrs':'pyrs','ret-age':'retAge','cur-age':'currentAge'};
-    if(el(id)&&C[fieldMap[id]]!==undefined) el(id).value=C[fieldMap[id]];
-  });
-}
-function loadNPSInputs(){
-  el('nps-corp').value=npsCfg.corp; el('nps-sip').value=npsCfg.sip;
-  el('nps-eq').value=npsCfg.eqAlloc; el('nps-dt').value=100-npsCfg.eqAlloc;
-  el('nps-er').value=npsCfg.eqRate; el('nps-dr').value=npsCfg.dtRate;
-}
-function loadRetBen(){
-  if(retBen.enabled){
-    el('ret-tog').classList.add('on');
-    el('ret-tog-lbl').textContent='Enabled';
-    el('ret-ben-fields').style.display='block';
-  }
-  el('ret-gratuity').value=retBen.gratuity||0;
-  el('ret-leave').value=retBen.leave||0;
-  el('ret-pf').value=retBen.pf||0;
-  el('ret-other').value=retBen.other||0;
-  el('ret-bucket').value=retBen.bucket||'debt';
-  updateRetSummary();
-}
-function toggleRetBen(){
-  retBen.enabled=!retBen.enabled;
-  el('ret-tog').classList.toggle('on',retBen.enabled);
-  el('ret-tog-lbl').textContent=retBen.enabled?'Enabled':'Disabled';
-  el('ret-ben-fields').style.display=retBen.enabled?'block':'none';
-  saveRetBen();
-}
-function saveRetBen(){
-  retBen={
-    enabled:retBen.enabled,
-    gratuity:+el('ret-gratuity').value||0,
-    leave:+el('ret-leave').value||0,
-    pf:+el('ret-pf').value||0,
-    other:+el('ret-other').value||0,
-    bucket:el('ret-bucket').value
-  };
-  sv('fin_ret',retBen);
-  updateRetSummary();
-  renderCorpus();
-}
-function updateRetSummary(){
-  const total=(retBen.gratuity||0)+(retBen.leave||0)+(retBen.pf||0)+(retBen.other||0);
-  const sumEl=el('ret-summary');
-  if(sumEl) sumEl.innerHTML=`Total retirement benefits: <b style="color:var(--tel)">${fmt(total)}</b> → added to <b>${retBen.bucket}</b> at retirement year ~${THIS_Y + Math.max(0, C.retAge-(C.currentAge||30))} (age ${C.retAge})`;
-}
-
-// ═══════════════════════════════ LEDGER ══════════════════════════════════════
-function getKey(y,m){return`${y}-${String(m+1).padStart(2,'0')}`;}
 function addExp(){
-  const d=el('exp-date').value,a=+el('exp-amt').value,c=el('exp-cat').value,desc=el('exp-desc').value;
+  const d=el('exp-date').value,a=+el('exp-amt').value,c=el('exp-cat').value,desc=el('exp-desc').value.trim();
   if(!d||!a)return;
   expenses.push({id:Date.now(),date:d,amount:a,category:c,desc});
-  sv('fin_exp',expenses); el('exp-amt').value=''; el('exp-desc').value=''; renderLedger();
+  sv('fs_exp',expenses);el('exp-amt').value='';el('exp-desc').value='';render();
 }
 function addSal(){
-  const d=el('sal-date').value,a=+el('sal-amt').value,note=el('sal-note').value;
+  const d=el('sal-date').value,a=+el('sal-amt').value,note=el('sal-note').value.trim()||'Income';
   if(!d||!a)return;
   salaries.push({id:Date.now(),date:d,amount:a,note});
-  sv('fin_sal',salaries); el('sal-amt').value=''; renderLedger();
+  sv('fs_sal',salaries);el('sal-amt').value='';render();
 }
-function delRow(id,type){
-  if(type==='exp'){expenses=expenses.filter(e=>e.id!==id);sv('fin_exp',expenses);}
-  else{salaries=salaries.filter(s=>s.id!==id);sv('fin_sal',salaries);}
-  renderLedger();
+function del(id,t){
+  if(t==='e'){expenses=expenses.filter(x=>x.id!==id);sv('fs_exp',expenses);}
+  else{salaries=salaries.filter(x=>x.id!==id);sv('fs_sal',salaries);}
+  render();
 }
 
-function renderLedger(){
-  const mExp=expenses.filter(e=>e.date.startsWith(getKey(selYear,selMonth))).sort((a,b)=>a.date.localeCompare(b.date));
-  const mSal=salaries.filter(s=>s.date.startsWith(getKey(selYear,selMonth))).sort((a,b)=>a.date.localeCompare(b.date));
+function render(){
+  const key=gk(selYear,selMonth);
   const srch=(el('search').value||'').toLowerCase();
+  const mExp=expenses.filter(e=>e.date.startsWith(key));
+  const mSal=salaries.filter(s=>s.date.startsWith(key));
   const fExp=mExp.filter(e=>!srch||e.desc?.toLowerCase().includes(srch)||e.category?.toLowerCase().includes(srch));
   const totInc=mSal.reduce((s,x)=>s+x.amount,0);
   const totExp=fExp.reduce((s,x)=>s+x.amount,0);
   const net=totInc-totExp;
-  renderMonthPicker();
-  el('ledger-kpis').innerHTML=[
+
+  el('month-title').textContent=`${MONTHS[selMonth]} ${selYear}`;
+
+  el('l-kpis').innerHTML=[
     ['Income',fmt(totInc),'var(--grn)'],
     ['Expenses',fmt(totExp),'var(--red)'],
     ['Net Saved',fmt(net),net>=0?'var(--acc)':'var(--red)'],
-    ['Savings %',totInc>0?Math.round(net/totInc*100)+'%':'—','var(--blu)']
-  ].map(([l,v,c])=>`<div class="kpi"><div class="kl">${l} — ${MONTHS[selMonth]}</div><div class="kv" style="color:${c}">${v}</div></div>`).join('');
-  const all=[...mSal.map(s=>({...s,type:'income'})),...fExp.map(e=>({...e,type:'expense'}))].sort((a,b)=>a.date.localeCompare(b.date));
-  let bal=0; const rows=all.map(r=>{bal+=r.type==='income'?r.amount:-r.amount;return{...r,balance:bal};});
-  el('ledger-body').innerHTML=rows.length===0
-    ?'<tr><td colspan="7" style="text-align:center;color:var(--mut);padding:40px">No entries for this month.</td></tr>'
-    :rows.map(r=>`<tr>
-      <td class="mn" style="color:var(--mut)">${r.date.slice(5)}</td>
-      <td>${badge(r.type==='income'?'IN':'OUT',r.type==='income'?'#22c55e':'#ef4444')}</td>
-      <td style="font-weight:600">${r.category||r.note}</td>
-      <td style="color:var(--mut);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.desc||r.note||'—'}</td>
-      <td class="mn" style="color:${r.type==='income'?'var(--grn)':'var(--red)'}">${r.type==='income'?'+':'-'}${fmt(r.amount)}</td>
-      <td class="mn" style="color:${r.balance>=0?'#e8eaf0':'var(--red)'}">${fmt(r.balance)}</td>
-      <td><button class="btn btn-sm btn-del" onclick="delRow(${r.id},'${r.type==='income'?'sal':'exp'}')">✕</button></td>
-    </tr>`).join('');
-  el('ledger-title').textContent=`${MONTHS[selMonth]} ${selYear} — Ledger`;
-  el('ledger-net').textContent=fmt(net);
-  el('ledger-net').style.color=net>=0?'var(--grn)':'var(--red)';
+    ['Savings %',totInc>0?Math.round(net/totInc*100)+'%':'—','var(--blu)'],
+  ].map(([l,v,c])=>`<div class="kpi"><div class="kl">${l}</div><div class="kv" style="color:${c};font-size:17px">${v}</div></div>`).join('');
+
+  el('mstrip').innerHTML=MONTHS.map((m,i)=>`<button class="mbtn${i===selMonth?' on':''}" onclick="selMonth=${i};render()">${m}</button>`).join('');
+
+  const yd=MONTHS.map((_,mi)=>expenses.filter(e=>e.date.startsWith(gk(selYear,mi))).reduce((s,e)=>s+e.amount,0));
+  const mx=Math.max(...yd,1);
+  el('heat').innerHTML=yd.map((v,i)=>`<div class="hcol${i===selMonth?' on':''}" style="height:${Math.max(8,v/mx*100)}%" onclick="selMonth=${i};render()"></div>`).join('');
+  el('hlbl').innerHTML=MONTHS.map(m=>`<span>${m[0]}</span>`).join('');
+
+  const all=[...mSal.map(s=>({...s,type:'i'})),...fExp.map(e=>({...e,type:'e'}))].sort((a,b)=>b.date.localeCompare(a.date));
+  el('txn-title').textContent=`${MONTHS[selMonth]} Transactions (${all.length})`;
+  el('txn-list').innerHTML=all.length===0
+    ?`<div class="empty"><div class="ei">📭</div><div>No entries for ${MONTHS[selMonth]}</div></div>`
+    :all.map(r=>{
+      const isI=r.type==='i';
+      const ci=CATS.indexOf(r.category);
+      const col=isI?'#22c55e':CCOLS[ci>=0?ci:10];
+      return`<div class="txn">
+        <div class="txn-ico" style="background:${col}18;color:${col}">${isI?'💰':CICONS[r.category]||'📌'}</div>
+        <div class="txn-body">
+          <div class="txn-cat">${r.category||r.note}</div>
+          <div class="txn-desc">${r.desc||r.note||r.date}</div>
+        </div>
+        <div class="txn-right">
+          <div class="txn-amt" style="color:${isI?'var(--grn)':'var(--red)'}">${isI?'+':'-'}${fmt(r.amount)}</div>
+          <div class="txn-date">${r.date.slice(5)}</div>
+        </div>
+        <button class="btn-del" onclick="del(${r.id},'${r.type}')">×</button>
+      </div>`;
+    }).join('');
+
   const catMap={};
   fExp.forEach(e=>{catMap[e.category]=(catMap[e.category]||0)+e.amount;});
   const cats=Object.entries(catMap).sort((a,b)=>b[1]-a[1]);
-  el('cat-brk').innerHTML=cats.length===0?'<div style="color:var(--mut);font-size:13px">No expenses.</div>':cats.map(([c,a])=>`
-    <div style="margin-bottom:10px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:3px"><span>${c}</span><span class="mn" style="font-size:13px;color:var(--acc)">${fmt(a)}</span></div>
-      <div style="background:var(--surf);border-radius:4px;height:6px;overflow:hidden">
-        <div style="height:100%;width:${totExp>0?a/totExp*100:0}%;background:var(--acc);border-radius:4px"></div>
-      </div>
-    </div>`).join('');
-  drawTrendChart();
+  el('cat-brk').innerHTML=cats.length===0
+    ?`<div style="color:var(--mut);font-size:13px;text-align:center;padding:10px">No expenses this month</div>`
+    :cats.map(([c,a])=>{
+      const col=CCOLS[CATS.indexOf(c)%CCOLS.length];
+      return`<div class="cat-row">
+        <div class="cat-top"><span style="font-weight:600">${CICONS[c]||'📌'} ${c}</span><span style="color:${col};font-weight:700">${fmt(a)}</span></div>
+        <div class="cat-bar"><div class="cat-fill" style="width:${totExp>0?a/totExp*100:0}%;background:${col}"></div></div>
+      </div>`;
+    }).join('');
 }
 
-function renderMonthPicker(){
-  const years=Array.from({length:6},(_,i)=>THIS_Y-2+i);
-  el('month-nav').innerHTML=`<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
-    <select onchange="selYear=+this.value;renderLedger()" style="width:auto;padding:7px 12px">
-      ${years.map(y=>`<option value="${y}"${y===selYear?' selected':''}>${y}</option>`).join('')}
-    </select>
-    <div style="display:flex;gap:4px;flex-wrap:wrap">
-      ${MONTHS.map((m,i)=>`<button class="nb${i===selMonth?' on':''}" onclick="selMonth=${i};renderLedger()" style="padding:6px 11px;font-size:12px">${m}</button>`).join('')}
-    </div>
-  </div>`;
-  const yd=MONTHS.map((_,mi)=>expenses.filter(e=>e.date.startsWith(getKey(selYear,mi))).reduce((s,e)=>s+e.amount,0));
-  const mx=Math.max(...yd,1);
-  el('heat-bar').innerHTML=yd.map((v,i)=>`<div class="hcol${i===selMonth?' on':''}" style="height:${Math.max(4,v/mx*100)}%" title="${MONTHS[i]}: ${fmt(v)}" onclick="selMonth=${i};renderLedger()"></div>`).join('');
-  el('heat-lbl').innerHTML=MONTHS.map(m=>`<span>${m[0]}</span>`).join('');
+function fvCalc(corp,sip,rate,years){
+  const r=rate/100/12,n=years*12;
+  if(r===0)return corp+sip*n;
+  return Math.round(corp*Math.pow(1+r,n)+sip*((Math.pow(1+r,n)-1)/r)*(1+r));
+}
+function fvStep(corp,sip,rate,step,years){
+  const r=rate/100/12;let v=corp;
+  for(let y=0;y<years;y++){const s=sip*Math.pow(1+step/100,y);for(let m=0;m<12;m++)v=v*(1+r)+s;}
+  return Math.round(v);
 }
 
-function drawTrendChart(){
-  const cv=el('trend-c');const ctx=cv.getContext('2d');
-  const W=cv.offsetWidth||280,H=150;
-  cv.width=W*devicePixelRatio;cv.height=H*devicePixelRatio;cv.style.height=H+'px';
-  ctx.scale(devicePixelRatio,devicePixelRatio);
-  const data=MONTHS.map((_,mi)=>{
-    const k=getKey(selYear,mi);
-    const inc=salaries.filter(s=>s.date.startsWith(k)).reduce((s,x)=>s+x.amount,0);
-    const exp=expenses.filter(e=>e.date.startsWith(k)).reduce((s,x)=>s+x.amount,0);
-    return{inc,exp};
-  });
-  const maxV=Math.max(...data.map(d=>Math.max(d.inc,d.exp)),1);
-  const bw=Math.floor((W-56)/12/3)-1,gap=2,pad=28;
-  ctx.clearRect(0,0,W,H);
-  data.forEach((d,i)=>{
-    const x0=pad+i*((W-56)/12);
-    const ih=(d.inc/maxV)*(H-40),eh=(d.exp/maxV)*(H-40);
-    ctx.fillStyle='#22c55e44';ctx.fillRect(x0,H-20-ih,bw,ih);ctx.fillStyle='#22c55e';ctx.fillRect(x0,H-20-ih,bw,2);
-    ctx.fillStyle='#ef444444';ctx.fillRect(x0+bw+gap,H-20-eh,bw,eh);ctx.fillStyle='#ef4444';ctx.fillRect(x0+bw+gap,H-20-eh,bw,2);
-    ctx.fillStyle=i===selMonth?'#f5a623':'#374151';ctx.font=(i===selMonth?'bold ':'')+'9px sans-serif';ctx.textAlign='center';ctx.fillText(MONTHS[i][0],x0+bw,H-5);
-  });
-  ctx.fillStyle='#22c55e';ctx.fillRect(W-90,8,12,8);ctx.fillStyle='#6b7280';ctx.font='10px sans-serif';ctx.textAlign='left';ctx.fillText('Income',W-74,16);
-  ctx.fillStyle='#ef4444';ctx.fillRect(W-90,22,12,8);ctx.fillText('Expense',W-74,30);
+function loadC(){
+  const fields={
+    'c-age':'age','c-ret':'ret','c-infl':'infl',
+    'eq-corp':'eqCorp','eq-sip':'eqSip','eq-rate':'eqRate','eq-step':'eqStep',
+    'dt-corp':'dtCorp','dt-sip':'dtSip','dt-rate':'dtRate','dt-step':'dtStep',
+    'gpf-corp':'gpfCorp','gpf-sip':'gpfSip','gpf-rate':'gpfRate','gpf-mat':'gpfMat',
+    'emg-corp':'emgCorp','emg-sip':'emgSip','emg-rate':'emgRate','emg-target':'emgTarget',
+    'nps-corp':'npsCorp','nps-sip':'npsSip','nps-eq':'npsEq','nps-rate':'npsRate',
+    'pli-val':'pliVal','pli-prem':'pliPrem','pli-mat':'pliMat','pli-mv':'pliMv',
+    'ret-g':'retG','ret-l':'retL','ret-p':'retP','ret-o':'retO',
+  };
+  Object.entries(fields).forEach(([id,key])=>{if(el(id)&&C[key]!==undefined&&C[key]!==0)el(id).value=C[key];});
+  if(C.retEnabled){el('ret-tog').classList.add('on');el('ret-fields').style.display='block';el('ret-lbl').textContent='On';}
 }
 
-// ═══════════════════════════════ NEEDS ═══════════════════════════════════════
-function addNeed(){
-  const name=el('n-name').value.trim(),yr=+el('n-yr').value,amt=+el('n-amt').value,from=el('n-from').value,icon=el('n-icon').value||'🎯';
-  if(!name||!amt)return;
-  needs.push({id:Date.now(),name,year:yr,amount:amt,icon,from});
-  sv('fin_needs4',needs); el('n-name').value=''; el('n-amt').value=0; renderCorpus();
-}
-function delNeed(id){needs=needs.filter(n=>n.id!==id);sv('fin_needs4',needs);renderCorpus();}
-function renderNeedsTable(){
-  el('needs-body').innerHTML=needs.map(n=>{
-    const adj=n.amount*Math.pow(1+C.infl/100,n.year);
-    const fromColor={'equity':'#22c55e','debt':'#3b82f6','gpf':'#ec4899','emergency':'#84cc16'}[n.from]||'#6b7280';
-    return`<tr><td style="font-size:18px">${n.icon}</td><td style="font-weight:600">${n.name}</td>
-      <td style="color:var(--mut)">Y${n.year} (${THIS_Y+n.year})</td>
-      <td class="mn">${fmt(n.amount)}</td><td class="mn" style="color:var(--red)">${fmt(adj)}</td>
-      <td>${badge(n.from,fromColor)}</td>
-      <td><button class="btn btn-sm btn-del" onclick="delNeed(${n.id})">✕</button></td></tr>`;
-  }).join('')||'<tr><td colspan="7" style="color:var(--mut);padding:14px">No needs added yet.</td></tr>';
+function saveC(){
+  C={
+    age:+el('c-age').value||30,ret:+el('c-ret').value||58,infl:+el('c-infl').value||6,
+    eqCorp:+el('eq-corp').value||0,eqSip:+el('eq-sip').value||0,eqRate:+el('eq-rate').value||12,eqStep:+el('eq-step').value||0,
+    dtCorp:+el('dt-corp').value||0,dtSip:+el('dt-sip').value||0,dtRate:+el('dt-rate').value||7,dtStep:+el('dt-step').value||0,
+    gpfCorp:+el('gpf-corp').value||0,gpfSip:+el('gpf-sip').value||0,gpfRate:+el('gpf-rate').value||7.1,gpfMat:+el('gpf-mat').value||2048,
+    emgCorp:+el('emg-corp').value||0,emgSip:+el('emg-sip').value||0,emgRate:+el('emg-rate').value||5,emgTarget:+el('emg-target').value||0,
+    npsCorp:+el('nps-corp').value||0,npsSip:+el('nps-sip').value||0,npsEq:Math.min(75,+el('nps-eq').value||75),npsRate:+el('nps-rate').value||11,
+    pliVal:+el('pli-val').value||0,pliPrem:+el('pli-prem').value||0,pliMat:+el('pli-mat').value||2042,pliMv:+el('pli-mv').value||0,
+    retEnabled:C.retEnabled,retG:+el('ret-g').value||0,retL:+el('ret-l').value||0,retP:+el('ret-p').value||0,retO:+el('ret-o').value||0,
+  };
+  sv('fs_cfg',C);
 }
 
-// ═══════════════════════════════ PLI ═════════════════════════════════════════
-function addPLI(){
-  const name=el('p-name').value.trim();if(!name)return;
-  pliPolicies.push({id:Date.now(),name,prem:+el('p-prem').value||0,corp:0,coup:+el('p-coup').value||55,sm:+el('p-sm').value||1,sy:+el('p-sy').value||THIS_Y,my:+el('p-my').value||2040,sa:+el('p-sa').value||0});
-  sv('fin_pli3',pliPolicies); el('p-name').value=''; el('p-sa').value=0; renderCorpus();
-}
-function delPLI(id){pliPolicies=pliPolicies.filter(p=>p.id!==id);sv('fin_pli3',pliPolicies);renderCorpus();}
-function updPLI(id,f,v){pliPolicies=pliPolicies.map(p=>p.id===id?{...p,[f]:+v}:p);sv('fin_pli3',pliPolicies);renderCorpus();}
-function pliMV(p){const tm=(p.my-p.sy)*12-(p.sm-1);return p.sa+(p.sa/1000)*(p.coup||0)*Math.max(0,tm)/12;}
-function pliAB(p){return(p.sa/1000)*(p.coup||0);}
-function renderPLITable(){
-  el('pli-body').innerHTML=pliPolicies.map(p=>{
-    const ab=pliAB(p),mv=pliMV(p),yl=p.my-THIS_Y,tm=(p.my-p.sy)*12-(p.sm-1);
-    return`<tr><td style="font-weight:600">${p.name}</td>
-      <td><input type="number" value="${p.prem}" onchange="updPLI(${p.id},'prem',this.value)" style="width:90px"/></td>
-      <td><input type="number" value="${p.corp}" onchange="updPLI(${p.id},'corp',this.value)" style="width:90px"/></td>
-      <td><input type="number" value="${p.sa}" onchange="updPLI(${p.id},'sa',this.value)" style="width:100px"/></td>
-      <td><input type="number" value="${p.coup}" onchange="updPLI(${p.id},'coup',this.value)" style="width:70px"/></td>
-      <td style="white-space:nowrap">${MONTHS[p.sm-1]} ${p.sy}</td>
-      <td>${p.my}</td>
-      <td class="mn" style="color:var(--pur)">${fmt(ab)}/yr</td>
-      <td class="mn" style="color:var(--acc)">${fmt(mv)}<div style="font-size:10px;color:var(--mut)">${(tm/12).toFixed(1)}y bonus</div></td>
-      <td>${yl<=0?badge('MATURED','#22c55e'):badge('🔒 '+yl+'y','#a855f7')}</td>
-      <td><button class="btn btn-sm btn-del" onclick="delPLI(${p.id})">✕</button></td></tr>`;
-  }).join('')||'<tr><td colspan="11" style="color:var(--mut);padding:14px">No PLI policies.</td></tr>';
+function toggleRet(){
+  C.retEnabled=!C.retEnabled;
+  el('ret-tog').classList.toggle('on',C.retEnabled);
+  el('ret-fields').style.display=C.retEnabled?'block':'none';
+  el('ret-lbl').textContent=C.retEnabled?'On':'Off';
+  sv('fs_cfg',C);renderCorpus();
 }
 
-// ═══════════════════════════════ PROJECTION ENGINE ═══════════════════════════
-function buildTimeline(){
-  // Need map
-  const needMap={};
-  needs.forEach(n=>{
-    const adj=n.amount*Math.pow(1+C.infl/100,n.year);
-    if(!needMap[n.year])needMap[n.year]={eq:0,dt:0,gpf:0,emg:0};
-    needMap[n.year][n.from==='equity'?'eq':n.from==='debt'?'dt':n.from==='gpf'?'gpf':'emg']+=adj;
-  });
-
-  // NPS: compute final value at retirement using monthly compounding —
-  // only shows up as a lump in retirement year, NOT projected year by year
-  const npsEqPct = Math.min(75,Math.max(0,npsCfg.eqAlloc))/100;
-  const npsDtPct = 1 - npsEqPct;
-  const npsEqR = npsCfg.eqRate/100/12, npsDtR = npsCfg.dtRate/100/12;
-  const npsEqSip = npsCfg.sip*npsEqPct, npsDtSip = npsCfg.sip*npsDtPct;
-  // retAge is an AGE (e.g. 58), currentAge is today's age (e.g. 30)
-  // years to retirement = retAge - currentAge
-  const retYrIdx = Math.max(0, C.retAge - (C.currentAge||30));
-  const retTotal = retBen.enabled ? (retBen.gratuity+retBen.leave+retBen.pf+retBen.other) : 0;
-
-  // Pre-compute NPS value at each year (silently, not shown in table until retirement)
-  function npsValueAtYear(targetYr) {
-    let nEq = npsCfg.corp*npsEqPct, nDt = npsCfg.corp*npsDtPct;
-    for(let y=1;y<=targetYr;y++){
-      for(let m=0;m<12;m++){
-        nEq = nEq*(1+npsEqR)+npsEqSip;
-        nDt = nDt*(1+npsDtR)+npsDtSip;
-      }
-    }
-    return Math.round(nEq+nDt);
-  }
-  // NPS appears at retirement year index
-  const npsAtRetirement = npsValueAtYear(retYrIdx);
-
-  // PLI: just maturity values — appear in year they mature, not projected before
-  // Build a map: yr -> total PLI maturing that year
-  const pliMaturityMap = {};
-  pliPolicies.forEach(p => {
-    const mYr = p.my - THIS_Y;
-    if(mYr >= 0) pliMaturityMap[mYr] = (pliMaturityMap[mYr]||0) + pliMV(p);
-  });
-  // Track which PLI have already matured (cumulative sum for grand total)
-  let cumulativePLI = 0;
-
-  let eq=C.eqCorp, dt=C.dtCorp, gpf=C.gpfCorp, emg=C.emgCorp;
-  let eqSipNow=C.eqSip, dtSipNow=C.dtSip;
-  const rows=[];
-
-  for(let yr=0;yr<=C.pyrs;yr++){
-    const calYear=THIS_Y+yr;
-    const ovr=yrOvr[yr]||{};
-    const eqR=(ovr.eqRate!==undefined?ovr.eqRate:C.eqRate)/100/12;
-    const dtR=(ovr.dtRate!==undefined?ovr.dtRate:C.dtRate)/100/12;
-    const gpfR=C.gpfRate/100/12;
-    const emgR=C.emgRate/100/12;
-
-    if(yr>0){
-      // Step-up: Year 1 = base SIP, Year 2 = base×(1+step)^1, etc.
-      eqSipNow = C.eqSip*Math.pow(1+C.eqStep/100, yr-1);
-      dtSipNow = C.dtSip*Math.pow(1+C.dtStep/100, yr-1);
-      for(let m=0;m<12;m++){
-        eq  = eq*(1+eqR)+eqSipNow;
-        dt  = dt*(1+dtR)+dtSipNow;
-        if(calYear<=C.gpfMat) gpf = gpf*(1+gpfR)+C.gpfSip;
-        // Stop adding SIP exactly when target is reached
-        if(C.emgTarget>0 && emg>=C.emgTarget) emg = emg*(1+emgR);
-        else { emg = emg*(1+emgR)+C.emgSip; if(C.emgTarget>0&&emg>C.emgTarget) emg=C.emgTarget*(1+emgR); }
-      }
-    }
-
-    // Retirement benefits lumpsum at retirement year
-    if(yr===retYrIdx&&retTotal>0){
-      if(retBen.bucket==='equity') eq+=retTotal;
-      else if(retBen.bucket==='gpf') gpf+=retTotal;
-      else dt+=retTotal;
-    }
-
-    eq+=ovr.lumpsumEq||0; dt+=ovr.lumpsumDt||0;
-    gpf+=ovr.lumpsumGpf||0; emg+=ovr.lumpsumEmg||0;
-    eq=Math.max(0,eq-(ovr.subtractEq||0)); dt=Math.max(0,dt-(ovr.subtractDt||0));
-    gpf=Math.max(0,gpf-(ovr.subtractGpf||0)); emg=Math.max(0,emg-(ovr.subtractEmg||0));
-
-    const rEqToDt=ovr.rebalEqToDt||0,rEqTax=ovr.rebalEqTax||0;
-    const rDtToEq=ovr.rebalDtToEq||0,rDtTax=ovr.rebalDtTax||0;
-    eq=Math.max(0,eq-rEqToDt)+Math.max(0,rDtToEq-rDtTax);
-    dt=Math.max(0,dt-rDtToEq)+Math.max(0,rEqToDt-rEqTax);
-
-    const nd=needMap[yr]||{eq:0,dt:0,gpf:0,emg:0};
-    eq=Math.max(0,eq-nd.eq); dt=Math.max(0,dt-nd.dt);
-    gpf=Math.max(0,gpf-nd.gpf); emg=Math.max(0,emg-nd.emg);
-
-    // PLI: add maturity value in the year each policy matures (cumulative)
-    if(pliMaturityMap[yr]) cumulativePLI += pliMaturityMap[yr];
-    const pliThisYr = pliMaturityMap[yr]||0; // new PLI maturing this year
-
-    // NPS: shows as a lump only at retirement year, 0 before that
-    const npsLump = (yr===retYrIdx) ? npsAtRetirement : 0;
-    // For grand total: include NPS after retirement year
-    const npsForGrand = yr >= retYrIdx ? npsAtRetirement : 0;
-
-    const eqDt = eq+dt;
-    const eqDtEmg = eqDt+emg;
-    const eqDtGpf = eqDt+gpf;
-    const eqDtGpfEmg = eqDtGpf+emg;
-    const grand = eqDtGpfEmg + npsForGrand + cumulativePLI;
-    const eqRatio = (eq+dt)>0?Math.round(eq/(eq+dt)*100):0;
-
-    rows.push({
-      yr,calYear,
-      eq:Math.round(eq), dt:Math.round(dt), gpf:Math.round(gpf), emg:Math.round(emg),
-      eqDt:Math.round(eqDt), eqDtEmg:Math.round(eqDtEmg),
-      eqDtGpf:Math.round(eqDtGpf), eqDtGpfEmg:Math.round(eqDtGpfEmg),
-      npsLump, npsAtRetirement, npsForGrand,
-      pliThisYr:Math.round(pliThisYr),
-      cumulativePLI:Math.round(cumulativePLI),
-      grandTotal:Math.round(grand),
-      eqRatio, dtRatio:100-eqRatio,
-      eqRate:ovr.eqRate!==undefined?ovr.eqRate:C.eqRate,
-      dtRate:ovr.dtRate!==undefined?ovr.dtRate:C.dtRate,
-      eqSipNow:Math.round(eqSipNow), dtSipNow:Math.round(dtSipNow),
-      needEq:Math.round(nd.eq),needDt:Math.round(nd.dt),needGpf:Math.round(nd.gpf),needEmg:Math.round(nd.emg),
-      yearNeeds:needs.filter(n=>n.year===yr),
-      isRetYr:yr===retYrIdx,
-      ovr,
-      rebalEqToDt:rEqToDt,rebalEqTax:rEqTax,rebalDtToEq:rDtToEq,rebalDtTax:rDtTax,
-      lumpsumEq:ovr.lumpsumEq||0,lumpsumDt:ovr.lumpsumDt||0,lumpsumGpf:ovr.lumpsumGpf||0,lumpsumEmg:ovr.lumpsumEmg||0,
-    });
-  }
-  return rows;
-}
-
-// ═══════════════════════════════ CHART ═══════════════════════════════════════
-function drawCorpusChart(rows){
-  const cv=el('corpus-c');
-  const W=cv.offsetWidth||900,H=Math.round(W*0.28);
-  cv.width=W*devicePixelRatio;cv.height=H*devicePixelRatio;cv.style.height=H+'px';
-  const ctx=cv.getContext('2d');ctx.scale(devicePixelRatio,devicePixelRatio);
-  const pl=60,pr=20,pt=20,pb=42,cw=W-pl-pr,ch=H-pt-pb;
-  const maxV=Math.max(...rows.map(r=>r.grandTotal),1);
-  const tx=i=>pl+(i/(rows.length-1))*cw, ty=v=>pt+ch-(v/maxV)*ch;
-  ctx.clearRect(0,0,W,H);
-  // Grid
-  ctx.strokeStyle='#1e2433';ctx.lineWidth=1;
-  [0,.25,.5,.75,1].forEach(f=>{const y=pt+ch*(1-f);ctx.beginPath();ctx.moveTo(pl,y);ctx.lineTo(W-pr,y);ctx.stroke();ctx.fillStyle='#6b7280';ctx.font='10px sans-serif';ctx.textAlign='right';ctx.fillText(fmt(maxV*f),pl-5,y+4);});
-  const step=Math.max(1,Math.floor(rows.length/10));
-  rows.forEach((r,i)=>{if(i%step===0){ctx.fillStyle='#6b7280';ctx.font='10px sans-serif';ctx.textAlign='center';ctx.fillText(r.calYear,tx(i),H-8);}});
-  const drawArea=(data,color,alpha=0.18)=>{ctx.beginPath();ctx.moveTo(tx(0),ty(data[0]));data.forEach((v,i)=>i>0&&ctx.lineTo(tx(i),ty(v)));ctx.lineTo(tx(data.length-1),pt+ch);ctx.lineTo(tx(0),pt+ch);ctx.closePath();ctx.fillStyle=color+Math.round(alpha*255).toString(16).padStart(2,'0');ctx.fill();};
-  const drawLine=(data,color,dash=[],lw=2)=>{ctx.beginPath();ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.setLineDash(dash);data.forEach((v,i)=>i===0?ctx.moveTo(tx(i),ty(v)):ctx.lineTo(tx(i),ty(v)));ctx.stroke();ctx.setLineDash([]);};
-  drawArea(rows.map(r=>r.eq),'#22c55e',0.22);
-  drawArea(rows.map(r=>r.dt),'#3b82f6',0.18);
-  drawArea(rows.map(r=>r.gpf),'#ec4899',0.15);
-  drawArea(rows.map(r=>r.emg),'#84cc16',0.15);
-  // NPS and PLI shown as point markers only (lumps), not continuous lines
-  drawLine(rows.map(r=>r.eq),'#22c55e');
-  drawLine(rows.map(r=>r.dt),'#3b82f6');
-  drawLine(rows.map(r=>r.gpf),'#ec4899',[5,3]);
-  drawLine(rows.map(r=>r.emg),'#84cc16',[4,3]);
-  // Draw NPS as a vertical lump marker at retirement year
-  const retRow = rows.find(r=>r.isRetYr);
-  if(retRow){
-    const xi=rows.indexOf(retRow);
-    ctx.strokeStyle='#f97316';ctx.lineWidth=2;ctx.setLineDash([5,3]);
-    ctx.beginPath();ctx.moveTo(tx(xi),pt);ctx.lineTo(tx(xi),pt+ch);ctx.stroke();ctx.setLineDash([]);
-    ctx.fillStyle='#f97316';ctx.font='bold 11px sans-serif';ctx.textAlign='center';
-    ctx.fillText('NPS '+fmt(retRow.npsAtRetirement),tx(xi),pt+32);
-  }
-  // Draw PLI maturity markers
-  rows.forEach((r,i)=>{
-    if(r.pliThisYr>0){
-      ctx.strokeStyle='#a855f7';ctx.lineWidth=1.5;ctx.setLineDash([4,2]);
-      ctx.beginPath();ctx.moveTo(tx(i),pt);ctx.lineTo(tx(i),pt+ch);ctx.stroke();ctx.setLineDash([]);
-      ctx.fillStyle='#a855f7';ctx.font='10px sans-serif';ctx.textAlign='center';
-      ctx.fillText('PLI '+fmt(r.pliThisYr),tx(i),pt+46);
-    }
-  });
-  drawLine(rows.map(r=>r.grandTotal),'#14b8a6',[],2.5);
-  // Need markers
-  needs.forEach(n=>{if(n.year<=C.pyrs){const x=tx(n.year);ctx.fillStyle='#ef4444';ctx.font='13px sans-serif';ctx.textAlign='center';ctx.fillText(n.icon,x,pt+14);}});
-  // NPS line
-  // NPS marker at actual retirement year (not hardcoded 2048)
-  const nYr=Math.max(0,C.retAge-(C.currentAge||30));if(nYr>0&&nYr<=C.pyrs){const x=tx(nYr);ctx.strokeStyle='#f97316';ctx.lineWidth=1.5;ctx.setLineDash([5,3]);ctx.beginPath();ctx.moveTo(x,pt);ctx.lineTo(x,pt+ch);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#f97316';ctx.font='10px sans-serif';ctx.textAlign='left';ctx.fillText('NPS🎯 '+(THIS_Y+nYr),x+3,pt+22);}
-  // GPF maturity
-  const gYr=C.gpfMat-THIS_Y;if(gYr>0&&gYr<=C.pyrs){const x=tx(gYr);ctx.strokeStyle='#ec4899';ctx.lineWidth=1.5;ctx.setLineDash([4,3]);ctx.beginPath();ctx.moveTo(x,pt);ctx.lineTo(x,pt+ch);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#ec4899';ctx.font='10px sans-serif';ctx.textAlign='right';ctx.fillText('GPF✓',x-3,pt+22);}
-  // Retirement marker
-  const rYr=C.retAge-THIS_Y;if(rYr>0&&rYr<=C.pyrs){const x=tx(rYr);ctx.strokeStyle='#14b8a6';ctx.lineWidth=1.5;ctx.setLineDash([3,2]);ctx.beginPath();ctx.moveTo(x,pt);ctx.lineTo(x,pt+ch);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#14b8a6';ctx.font='10px sans-serif';ctx.textAlign='center';ctx.fillText('🎁',x,pt+ch-6);}
-  // Legend
-  const leg=[['Equity','#22c55e',[]],['Debt','#3b82f6',[]],['GPF','#ec4899',[4,2]],['Emg','#84cc16',[4,2]],['Total','#14b8a6',[]],['NPS lump','#f97316',[5,3]],['PLI lump','#a855f7',[4,2]]];
-  let lx=pl;
-  leg.forEach(([lb,c,d])=>{ctx.strokeStyle=c;ctx.lineWidth=2;ctx.setLineDash(d);ctx.beginPath();ctx.moveTo(lx,H-24);ctx.lineTo(lx+18,H-24);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#6b7280';ctx.font='10px sans-serif';ctx.textAlign='left';ctx.fillText(lb,lx+21,H-20);lx+=65;});
-}
-
-// ═══════════════════════════════ YEAR TABLE ═══════════════════════════════════
-function renderYrTable(rows){
-  const tb=el('yr-body');
-  let html='';
-  rows.forEach(r=>{
-    const isNeed=r.needEq>0||r.needDt>0||r.needGpf>0||r.needEmg>0;
-    const isLump=(r.lumpsumEq||r.lumpsumDt||r.lumpsumGpf||r.lumpsumEmg)>0;
-    const isRebal=r.rebalEqToDt>0||r.rebalDtToEq>0;
-    const isEdit=editYr===r.yr;
-    const bg=r.isRetYr?'rgba(20,184,166,.05)':isNeed?'rgba(239,68,68,.04)':isRebal?'rgba(20,184,166,.04)':isLump?'rgba(168,85,247,.04)':r.yr%2===0?'':'rgba(255,255,255,.015)';
-    const ovr=r.ovr;
-    let events='';
-    if(r.isRetYr) events+=`<div style="color:var(--tel);font-size:11px">🎁 Ret. benefits +${fmt(retBen.gratuity+retBen.leave+retBen.pf+retBen.other)} → ${retBen.bucket}</div>`;
-    if(isNeed){if(r.needEq)events+=`<div style="color:var(--red);font-size:11px" class="mn">📈-${fmt(r.needEq)}</div>`;if(r.needDt)events+=`<div style="color:var(--red);font-size:11px" class="mn">🏦-${fmt(r.needDt)}</div>`;if(r.needGpf)events+=`<div style="color:var(--red);font-size:11px" class="mn">📋-${fmt(r.needGpf)}</div>`;r.yearNeeds.forEach(n=>{events+=`<div style="color:var(--mut);font-size:10px">${n.icon}${n.name}</div>`;});}
-    if(isLump){if(r.lumpsumEq)events+=`<div style="color:var(--pur);font-size:11px">💰+${fmt(r.lumpsumEq)} eq</div>`;if(r.lumpsumDt)events+=`<div style="color:var(--pur);font-size:11px">💰+${fmt(r.lumpsumDt)} dt</div>`;if(r.lumpsumGpf)events+=`<div style="color:var(--pur);font-size:11px">💰+${fmt(r.lumpsumGpf)} gpf</div>`;}
-    if(isRebal){if(r.rebalEqToDt)events+=`<div style="color:var(--tel);font-size:11px">⇄Eq→Dt:${fmt(r.rebalEqToDt)}<span style="color:var(--red)">-tax${fmt(r.rebalEqTax)}</span></div>`;}
-    if(!events)events='<span style="color:var(--dim)">—</span>';
-
-    html+=`<tr style="background:${bg};cursor:pointer" onclick="toggleEdit(${r.yr})">
-      <td><b>${r.calYear}</b><div style="font-size:9px;color:var(--dim)">Y+${r.yr}</div></td>
-      <td class="mn" style="color:var(--grn)">${r.eqRate}%</td>
-      <td class="mn" style="color:var(--blu)">${r.dtRate}%</td>
-      <td class="mn" style="color:var(--grn);font-size:11px">${fmt(r.eqSipNow)}</td>
-      <td class="mn" style="color:var(--blu);font-size:11px">${fmt(r.dtSipNow)}</td>
-      <td class="mn" style="color:var(--grn)">${fmt(r.eq)}</td>
-      <td class="mn" style="color:var(--blu)">${fmt(r.dt)}</td>
-      <td class="mn" style="color:var(--lime)">${fmt(r.emg)}</td>
-      <td class="mn" style="color:var(--tel)">${fmt(r.eqDt)}</td>
-      <td class="mn" style="color:var(--tel)">${fmt(r.eqDtEmg)}</td>
-      <td>
-        <div style="display:flex;gap:3px;align-items:center;margin-bottom:2px">
-          <span class="mn" style="color:var(--grn);font-size:11px">${r.eqRatio}%</span>
-          <span style="color:var(--dim);font-size:10px">:</span>
-          <span class="mn" style="color:var(--blu);font-size:11px">${r.dtRatio}%</span>
-        </div>
-        <div class="ratio-bar"><div style="width:${r.eqRatio}%;background:var(--grn)"></div><div style="width:${r.dtRatio}%;background:var(--blu)"></div></div>
-      </td>
-      <td class="mn" style="color:${r.calYear>=C.gpfMat?'var(--lime)':'var(--pink)'}">${fmt(r.gpf)}<div style="font-size:9px;color:var(--dim)">${r.calYear>=C.gpfMat?'✓matured':'🔒'}</div></td>
-      <td class="mn" style="color:var(--acc)">${fmt(r.eqDtGpf)}</td>
-      <td class="mn" style="color:var(--acc);font-weight:800">${fmt(r.eqDtGpfEmg)}</td>
-      <td class="mn" style="color:${r.npsLump>0?'var(--orn)':r.npsForGrand>0?'rgba(247,144,35,.5)':'var(--dim)'}">
-        ${r.npsLump>0?fmt(r.npsLump):(r.npsForGrand>0?'included':'—')}
-        ${r.isRetYr&&r.npsLump>0?'<div style="font-size:9px;color:var(--orn)">🎯 @ retirement</div>':''}
-      </td>
-      <td class="mn" style="color:${r.pliThisYr>0?'var(--pur)':r.cumulativePLI>0?'rgba(168,85,247,.5)':'var(--dim)'}">
-        ${r.pliThisYr>0?'<div style="color:var(--pur)">+'+fmt(r.pliThisYr)+'</div>':''}
-        ${r.cumulativePLI>0&&r.pliThisYr===0?'<div style="color:rgba(168,85,247,.5);font-size:11px">incl. '+fmt(r.cumulativePLI)+'</div>':''}
-        ${r.cumulativePLI===0&&r.pliThisYr===0?'<span style="color:var(--dim)">—</span>':''}
-      </td>
-      <td class="mn" style="color:var(--tel);font-size:13px;font-weight:800">${fmt(r.grandTotal)}</td>
-      <td style="min-width:120px;font-size:11px">${events}</td>
-      <td style="color:${isEdit?'var(--acc)':'var(--mut)'};font-size:15px">${isEdit?'▲':'▼'}</td>
-    </tr>`;
-
-    if(isEdit){
-      html+=`<tr><td colspan="20" style="padding:0"><div class="ep">
-        <div style="color:var(--acc);font-weight:700;font-size:13px;margin-bottom:14px">✏️ Edit Year ${r.calYear} (Y+${r.yr})</div>
-        <div class="edit-yr-grid" style="display:grid;grid-template-columns:repeat(8,1fr);gap:12px;margin-bottom:14px">
-          <div><div class="lbl">Equity Rate %</div><input type="number" value="${ovr.eqRate!==undefined?ovr.eqRate:C.eqRate}" onchange="setOvr(${r.yr},'eqRate',+this.value)" style="color:var(--grn)"/></div>
-          <div><div class="lbl">Debt Rate %</div><input type="number" value="${ovr.dtRate!==undefined?ovr.dtRate:C.dtRate}" onchange="setOvr(${r.yr},'dtRate',+this.value)" style="color:var(--blu)"/></div>
-          <div><div class="lbl">+ Lumpsum Equity</div><input type="number" value="${ovr.lumpsumEq||0}" onchange="setOvr(${r.yr},'lumpsumEq',+this.value)" style="color:var(--grn)"/></div>
-          <div><div class="lbl">+ Lumpsum Debt</div><input type="number" value="${ovr.lumpsumDt||0}" onchange="setOvr(${r.yr},'lumpsumDt',+this.value)" style="color:var(--blu)"/></div>
-          <div><div class="lbl">+ Lumpsum GPF</div><input type="number" value="${ovr.lumpsumGpf||0}" onchange="setOvr(${r.yr},'lumpsumGpf',+this.value)" style="color:var(--pink)"/></div>
-          <div><div class="lbl">+ Lumpsum Emg</div><input type="number" value="${ovr.lumpsumEmg||0}" onchange="setOvr(${r.yr},'lumpsumEmg',+this.value)" style="color:var(--lime)"/></div>
-          <div><div class="lbl">- Subtract Equity</div><input type="number" value="${ovr.subtractEq||0}" onchange="setOvr(${r.yr},'subtractEq',+this.value)" style="color:var(--red)"/></div>
-          <div><div class="lbl">- Subtract Debt</div><input type="number" value="${ovr.subtractDt||0}" onchange="setOvr(${r.yr},'subtractDt',+this.value)" style="color:var(--red)"/></div>
-        </div>
-        <div class="rb" style="margin-bottom:12px">
-          <div style="color:var(--tel);font-weight:700;font-size:13px;margin-bottom:10px">⇄ Rebalance — Tax LOST, does not transfer</div>
-          <div class="g2">
-            <div style="background:var(--surf);border-radius:8px;padding:10px 14px">
-              <div style="color:var(--grn);font-weight:700;font-size:12px;margin-bottom:8px">📈 Equity → 🏦 Debt</div>
-              <div class="g2">
-                <div><div class="lbl">Redeem from Equity</div><input type="number" value="${ovr.rebalEqToDt||0}" onchange="setOvr(${r.yr},'rebalEqToDt',+this.value)" style="color:var(--grn)"/></div>
-                <div><div class="lbl">Tax Paid (lost)</div><input type="number" value="${ovr.rebalEqTax||0}" onchange="setOvr(${r.yr},'rebalEqTax',+this.value)" style="color:var(--red)"/></div>
-              </div>
-              <div style="margin-top:6px;font-size:12px;color:var(--mut)">Net to debt: <span class="mn" style="color:var(--blu)">${fmt(Math.max(0,(ovr.rebalEqToDt||0)-(ovr.rebalEqTax||0)))}</span></div>
-            </div>
-            <div style="background:var(--surf);border-radius:8px;padding:10px 14px">
-              <div style="color:var(--blu);font-weight:700;font-size:12px;margin-bottom:8px">🏦 Debt → 📈 Equity</div>
-              <div class="g2">
-                <div><div class="lbl">Redeem from Debt</div><input type="number" value="${ovr.rebalDtToEq||0}" onchange="setOvr(${r.yr},'rebalDtToEq',+this.value)" style="color:var(--blu)"/></div>
-                <div><div class="lbl">Tax Paid (lost)</div><input type="number" value="${ovr.rebalDtTax||0}" onchange="setOvr(${r.yr},'rebalDtTax',+this.value)" style="color:var(--red)"/></div>
-              </div>
-              <div style="margin-top:6px;font-size:12px;color:var(--mut)">Net to equity: <span class="mn" style="color:var(--grn)">${fmt(Math.max(0,(ovr.rebalDtToEq||0)-(ovr.rebalDtTax||0)))}</span></div>
-            </div>
-          </div>
-        </div>
-        <div style="display:flex;gap:8px">
-          <button class="btn btn-sm btn-sec" onclick="resetOvr(${r.yr})">Reset year</button>
-          <button class="btn btn-sm" onclick="toggleEdit(${r.yr})">Done</button>
-        </div>
-      </div></td></tr>`;
-    }
-  });
-  tb.innerHTML=html;
-}
-
-function toggleEdit(yr){editYr=editYr===yr?null:yr;renderCorpus();}
-function setOvr(yr,key,val){if(!yrOvr[yr])yrOvr[yr]={};yrOvr[yr][key]=val;sv('fin_yr_ovr4',yrOvr);renderCorpus();}
-function resetOvr(yr){delete yrOvr[yr];sv('fin_yr_ovr4',yrOvr);renderCorpus();}
-
-// ═══════════════════════════════ CORPUS RENDER ════════════════════════════════
 function renderCorpus(){
-  const rows=buildTimeline();
-  const last=rows[rows.length-1]||{};
-  const retYrIdx=Math.max(0,C.retAge-(C.currentAge||30));
-  const npsAtRetirement=last.npsAtRetirement||0;
-  const totalNeeds=needs.reduce((s,n)=>s+n.amount*Math.pow(1+C.infl/100,n.year),0);
+  const yrs=Math.max(0,C.ret-C.age);
+  const retYear=THIS_Y+yrs;
+  const eqP=fvStep(C.eqCorp,C.eqSip,C.eqRate,C.eqStep,yrs);
+  const dtP=fvStep(C.dtCorp,C.dtSip,C.dtRate,C.dtStep,yrs);
+  const gpfYrs=Math.min(yrs,Math.max(0,C.gpfMat-THIS_Y));
+  const gpfP=fvCalc(C.gpfCorp,C.gpfSip,C.gpfRate,gpfYrs);
+  let emgP;
+  if(C.emgTarget>0){let e=C.emgCorp;const r=C.emgRate/100/12;for(let m=0;m<yrs*12;m++){if(e>=C.emgTarget)e=e*(1+r);else{e=e*(1+r)+C.emgSip;if(e>C.emgTarget)e=C.emgTarget;}}emgP=Math.round(e);}
+  else emgP=fvCalc(C.emgCorp,C.emgSip,C.emgRate,yrs);
+  const npsP=fvCalc(C.npsCorp,C.npsSip,C.npsRate,yrs);
+  const pliP=C.pliMv>0?C.pliMv:C.pliVal;
+  const retT=C.retEnabled?(C.retG+C.retL+C.retP+C.retO):0;
 
-  // KPIs
-  el('corpus-kpis').innerHTML=[
-    [`Equity Y+${C.pyrs}`,fmt(last.eq),'var(--grn)'],
-    [`Debt Y+${C.pyrs}`,fmt(last.dt),'var(--blu)'],
-    [`GPF Y+${C.pyrs}`,fmt(last.gpf),'var(--pink)'],
-    [`Emergency`,fmt(last.emg),'var(--lime)'],
-    [`Eq+Dt+GPF+Emg (Y+${C.pyrs})`,fmt(last.eqDtGpfEmg),'var(--acc)'],
-    [`NPS @ Retire (${THIS_Y+retYrIdx})`,fmt(npsAtRetirement),'var(--orn)'],
-    [`PLI Total (all policies)`,fmt(pliPolicies.reduce((s,p)=>s+pliMV(p),0)),'var(--pur)'],
-    [`GRAND TOTAL`,fmt(last.grandTotal),'var(--tel)'],
-  ].map(([l,v,c])=>`<div class="kpi" style="${l==='GRAND TOTAL'?'border-color:rgba(20,184,166,.4)':''}">
-    <div class="kl">${l}</div><div class="kv" style="color:${c};font-size:${l==='GRAND TOTAL'?'16':'15'}px">${v}</div>
-  </div>`).join('');
+  el('eq-proj').textContent=fmt(eqP);
+  el('dt-proj').textContent=fmt(dtP);
+  el('gpf-proj').textContent=fmt(gpfP);
+  el('emg-proj').textContent=fmt(emgP);
+  el('nps-proj').textContent=fmt(npsP);
+  el('pli-proj').textContent=pliP>0?fmt(pliP):'Add maturity value';
+  if(el('ret-total'))el('ret-total').textContent=fmt(retT);
 
-  // NPS KPIs
-  const npsEqN=npsCfg.corp*(Math.min(75,npsCfg.eqAlloc)/100),npsDtN=npsCfg.corp*(1-Math.min(75,npsCfg.eqAlloc)/100);
-  el('nps-kpis').innerHTML=[
-    ['NPS Equity Now',fmt(npsEqN),'var(--grn)'],['NPS Debt Now',fmt(npsDtN),'var(--blu)'],
-    ['Monthly Contrib',fmt(npsCfg.sip),'var(--orn)'],['At Retirement '+( THIS_Y+retYrIdx),fmt(npsAtRetirement),'var(--acc)'],
-  ].map(([l,v,c])=>`<div style="background:var(--surf);border-radius:8px;padding:10px 12px">
-    <div style="font-size:10px;color:var(--mut);text-transform:uppercase;margin-bottom:3px">${l}</div>
-    <div class="mn" style="color:${c};font-size:14px">${v}</div></div>`).join('');
+  const todayTotal=C.eqCorp+C.dtCorp+C.gpfCorp+C.emgCorp+C.npsCorp+C.pliVal;
+  const projTotal=eqP+dtP+gpfP+emgP+npsP+pliP+retT;
+  el('grand-today').textContent=fmt(todayTotal);
+  el('grand-proj-lbl').textContent=`→ Projected ${fmt(projTotal)} at retirement (${retYear}, age ${C.ret})`;
 
-  updateRetSummary();
-  setTimeout(()=>drawCorpusChart(rows),30);
-  renderYrTable(rows);
-  renderNeedsTable();
-  renderPLITable();
+  const bkts=[
+    {l:'Equity',v:C.eqCorp,c:'#22c55e'},{l:'Debt',v:C.dtCorp,c:'#3b82f6'},
+    {l:'GPF',v:C.gpfCorp,c:'#ec4899'},{l:'Emergency',v:C.emgCorp,c:'#84cc16'},
+    {l:'NPS',v:C.npsCorp,c:'#f97316'},{l:'PLI',v:C.pliVal,c:'#a855f7'},
+  ].filter(b=>b.v>0);
+  const btot=bkts.reduce((s,b)=>s+b.v,0)||1;
+  el('abar').innerHTML=bkts.map(b=>`<div class="aseg" style="width:${b.v/btot*100}%;background:${b.c}"></div>`).join('');
+  el('aleg').innerHTML=bkts.map(b=>`<div class="aitem"><div class="adot" style="background:${b.c}"></div>${b.l} ${Math.round(b.v/btot*100)}%</div>`).join('');
+
+  const rows=[
+    {l:'📈 Equity MF',v:eqP,c:'var(--grn)'},{l:'🏦 Debt MF',v:dtP,c:'var(--blu)'},
+    {l:'📋 GPF/PPF',v:gpfP,c:'var(--pink)'},{l:'🛡️ Emergency',v:emgP,c:'var(--lime)'},
+    {l:'🏛️ NPS',v:npsP,c:'var(--orn)'},{l:'📮 PLI',v:pliP,c:'var(--pur)'},
+  ];
+  if(C.retEnabled&&retT>0)rows.push({l:'🎁 Benefits',v:retT,c:'var(--tel)'});
+  el('summary').innerHTML=rows.map(r=>`<div class="sum-row"><span class="sum-lbl">${r.l}</span><span class="sum-val" style="color:${r.c}">${fmt(r.v)}</span></div>`).join('')
+    +`<div class="sum-row"><span style="font-weight:700;font-size:14px">🏆 Grand Total</span><span class="sum-val" style="color:var(--acc);font-size:16px">${fmt(projTotal)}</span></div>`;
 }
 
-// ═══════════════════════════════ BOOT ════════════════════════════════════════
-window.addEventListener('load',()=>{
-  initDOM();
-  renderLedger();
-  window.addEventListener('resize',()=>{
-    if(el('pg-corpus').classList.contains('on'))renderCorpus();
-    else drawTrendChart();
-  });
-  // Wire up retirement fields
-  ['ret-gratuity','ret-leave','ret-pf','ret-other','ret-bucket'].forEach(id=>{
-    const e=el(id);if(e)e.addEventListener('change',saveRetBen);
-  });
-});
-</script>
-<script>
-// ── SERVICE WORKER ──
-if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('sw.js').catch(()=>{});
-  });
-}
+// PWA
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+let _p;const _b=document.createElement('div');
+_b.style.cssText='display:none;position:fixed;bottom:78px;left:12px;right:12px;background:var(--acc);color:#000;padding:13px 18px;border-radius:14px;font-weight:700;font-size:14px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.4);cursor:pointer;text-align:center';
+_b.textContent='📲 Install FinSuite as App';_b.onclick=async()=>{if(_p){_p.prompt();await _p.userChoice;_p=null;_b.style.display='none';}};
+document.body.appendChild(_b);
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();_p=e;_b.style.display='block';});
+window.addEventListener('appinstalled',()=>_b.style.display='none');
 
-// ── PWA INSTALL BANNER ──
-let deferredPrompt;
-const installBanner = document.createElement('div');
-installBanner.id = 'install-banner';
-installBanner.style.cssText = 'display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#f5a623;color:#000;padding:12px 20px;border-radius:12px;font-weight:700;font-size:14px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.5);cursor:pointer;white-space:nowrap;gap:8px;align-items:center;';
-installBanner.innerHTML = '📲 Install FinSuite as App';
-installBanner.onclick = async () => {
-  if(deferredPrompt){ deferredPrompt.prompt(); const r = await deferredPrompt.userChoice; deferredPrompt=null; installBanner.style.display='none'; }
-};
-document.body.appendChild(installBanner);
-
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault(); deferredPrompt = e;
-  installBanner.style.display = 'flex';
-});
-window.addEventListener('appinstalled', () => { installBanner.style.display='none'; });
+window.addEventListener('load',init);
 </script>
 </body>
 </html>
