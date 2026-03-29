@@ -77,103 +77,144 @@ canvas{display:block;width:100%!important}
 .col-group{border-left:2px solid;padding-left:8px}
 footer{border-top:1px solid var(--bdr);padding:14px 24px;margin-top:32px}
 
-/* ── MOBILE RESPONSIVE ── */
+/* ══════════════════════════════════════════
+   MOBILE APP STYLES  (≤ 700 px)
+══════════════════════════════════════════ */
 @media(max-width:700px){
-  /* Header */
-  header{padding:0 12px}
-  .hr{height:auto;padding:10px 0;flex-wrap:wrap;gap:6px}
-  .hr > div:last-child{font-size:10px}
 
-  /* Nav: horizontal scroll */
-  nav{padding:0 8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .nr{flex-wrap:nowrap;gap:4px;padding:6px 0;min-width:max-content}
-  .nb{padding:7px 12px;font-size:12px;white-space:nowrap}
+  /* ── Body: room for bottom nav ── */
+  body{padding-bottom:72px;font-size:15px}
 
-  /* Main */
-  main{padding:10px}
-  .pg{gap:12px}
+  /* ── Header: compact single line ── */
+  header{padding:0 14px;position:sticky;top:0;z-index:200}
+  .hr{height:52px;flex-wrap:nowrap}
+  .hr > div:first-child > div:first-child{width:30px;height:30px;font-size:15px;border-radius:8px}
+  .hr > div:first-child > div:last-child > div:first-child{font-size:16px}
+  .hr > div:last-child{display:none}          /* hide "fully offline" badge */
 
-  /* KPI grids */
-  .g2{grid-template-columns:1fr 1fr!important}
-  .g3{grid-template-columns:1fr 1fr!important}
-  .g4{grid-template-columns:1fr 1fr!important}
-  .g8{grid-template-columns:1fr 1fr!important}
-  .gauto{grid-template-columns:1fr 1fr!important}
+  /* ── Hide top nav, use bottom nav instead ── */
+  nav{display:none}
+  #bottom-nav{
+    display:flex!important;
+    position:fixed;bottom:0;left:0;right:0;
+    background:var(--surf);border-top:1px solid var(--bdr);
+    z-index:300;height:64px;
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  .bnav-btn{
+    flex:1;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:3px;border:none;background:transparent;
+    color:var(--mut);font-size:10px;font-weight:600;cursor:pointer;
+    font-family:inherit;padding:8px 0;transition:color .15s;
+  }
+  .bnav-btn .bicon{font-size:22px;line-height:1}
+  .bnav-btn.on{color:var(--acc)}
 
-  /* Cards */
-  .card{padding:12px 10px}
+  /* ── Main padding ── */
+  main{padding:12px 10px}
+  .pg{gap:14px}
 
-  /* Expense form */
-  #exp-form-grid{grid-template-columns:1fr 1fr!important;row-gap:10px}
+  /* ── Cards ── */
+  .card{padding:14px 12px;border-radius:14px}
+  .ct{font-size:16px}
+
+  /* ── Inputs & selects: bigger tap targets ── */
+  input,select{padding:12px 14px;font-size:15px;border-radius:10px}
+  .lbl{font-size:12px;margin-bottom:6px}
+
+  /* ── Buttons ── */
+  .btn{padding:13px 20px;font-size:15px;border-radius:10px;width:100%;display:block;text-align:center}
+  .btn-sm{padding:8px 14px;font-size:13px;width:auto;display:inline-block}
+  .btn-del{width:auto!important;display:inline-block!important}
+
+  /* ── KPI grids ── */
+  .g2,.g3,.g4,.g8,.gauto{grid-template-columns:1fr 1fr!important;gap:10px}
+  #corpus-kpis,#nps-kpis{grid-template-columns:1fr 1fr!important}
+  .kpi{padding:12px}
+  .kl{font-size:10px}
+  .kv{font-size:15px!important}
+
+  /* ── Expense form: full single column ── */
+  #exp-form-grid{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    row-gap:12px;column-gap:10px
+  }
   #exp-form-grid > div:nth-child(3),
   #exp-form-grid > div:nth-child(4){grid-column:1/-1}
-  #exp-form-grid > button{grid-column:1/-1;width:100%;margin-top:0!important}
+  #exp-form-grid > button{grid-column:1/-1;margin-top:0!important}
 
-  /* Salary form */
-  #sal-form-grid{grid-template-columns:1fr 1fr!important;row-gap:10px}
+  /* ── Salary form ── */
+  #sal-form-grid{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    row-gap:12px;column-gap:10px
+  }
   #sal-form-grid > div:nth-child(3){grid-column:1/-1}
-  #sal-form-grid > button{grid-column:1/-1;width:100%;margin-top:0!important}
+  #sal-form-grid > button{grid-column:1/-1;margin-top:0!important}
 
-  /* Ledger + sidebar: stack vertically */
-  #ledger-layout{grid-template-columns:1fr!important}
+  /* ── Ledger layout: single column ── */
+  #ledger-layout{grid-template-columns:1fr!important;gap:14px}
 
-  /* Portfolio 4-col: 2-col on mobile */
-  #portfolio-grid{grid-template-columns:1fr 1fr!important}
+  /* ── Search bar ── */
+  #search{width:100%!important;margin-top:8px}
+  #ledger-layout > div:first-child > div:first-child{flex-direction:column;align-items:flex-start!important;gap:6px}
 
-  /* Small fields (inflation/pyrs/age) */
-  #small-fields-grid{grid-template-columns:1fr 1fr!important}
+  /* ── Portfolio: 1 column each card full width ── */
+  #portfolio-grid{grid-template-columns:1fr!important;gap:12px}
 
-  /* Needs form */
-  #needs-form-grid{grid-template-columns:1fr 1fr!important;row-gap:10px}
-  #needs-form-grid > div:nth-child(1){grid-column:span 1}
-  #needs-form-grid > div:nth-child(2){grid-column:span 1}
+  /* ── Small fields ── */
+  #small-fields-grid{grid-template-columns:1fr 1fr!important;gap:10px}
+
+  /* ── Needs form ── */
+  #needs-form-grid{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    row-gap:12px;column-gap:10px
+  }
+  #needs-form-grid > div:nth-child(2),
   #needs-form-grid > div:nth-child(5){grid-column:1/-1}
-  #needs-form-grid > button{grid-column:1/-1;width:100%;margin-top:0!important}
+  #needs-form-grid > button{grid-column:1/-1;margin-top:0!important}
 
-  /* PLI form */
-  #pli-form-grid{grid-template-columns:1fr 1fr!important;row-gap:10px}
+  /* ── PLI form ── */
+  #pli-form-grid{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    row-gap:12px;column-gap:10px
+  }
   #pli-form-grid > div:nth-child(1){grid-column:1/-1}
-  #pli-form-grid > button{grid-column:1/-1;width:100%;margin-top:0!important}
+  #pli-form-grid > button{grid-column:1/-1;margin-top:0!important}
 
-  /* Edit year inline form */
-  .edit-yr-grid{grid-template-columns:1fr 1fr!important}
+  /* ── Year edit panel ── */
+  .edit-yr-grid{grid-template-columns:1fr 1fr!important;gap:10px}
+  .ep{padding:12px}
 
-  /* Rebalance section */
-  .g2.rb-inner{grid-template-columns:1fr!important}
+  /* ── Retirement benefits ── */
+  #ret-ben-fields > div:first-child{grid-template-columns:1fr 1fr!important}
 
-  /* Retirement benefits */
-  #ret-ben-fields > div{grid-template-columns:1fr 1fr!important}
+  /* ── Tables: horizontal scroll ── */
+  .card > div[style*="overflow-x"]{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{font-size:12px;min-width:480px}
+  th,td{padding:8px 8px;white-space:nowrap}
+  td input[type="number"]{width:72px!important}
 
-  /* Corpus edit panel buttons */
-  .ep > div:last-child{flex-wrap:wrap}
-  .ep > div:last-child button{flex:1}
+  /* ── Charts ── */
+  canvas{height:140px!important}
 
-  /* Tables: already overflow-x:auto, just ensure inputs shrink */
-  td input[type="number"]{width:70px!important;min-width:0}
+  /* ── Month picker buttons ── */
+  .nr .nb,.nr button{padding:7px 10px;font-size:12px}
 
-  /* Charts */
-  canvas{height:120px!important}
+  /* ── Tab buttons (+ Expense / + Income) ── */
+  #tab-exp-btn,#tab-sal-btn{flex:1;text-align:center;padding:10px}
 
-  /* Footer */
-  footer{padding:10px 12px}
-  footer > div{flex-direction:column;gap:4px}
+  /* ── Rebalance g2 ── */
+  .rb .g2{grid-template-columns:1fr!important}
 
-  /* Buttons in entry tabs */
-  .btn{font-size:13px;padding:9px 14px}
+  /* ── Footer ── */
+  footer{display:none}
 
-  /* Search box */
-  #search{width:130px!important}
-
-  /* KPI font sizes */
-  .kv{font-size:14px!important}
-
-  /* Month picker wraps nicely — already flex-wrap:wrap in JS */
-
-  /* Corpus KPI grid (g8 override specifically) */
-  #corpus-kpis{grid-template-columns:1fr 1fr!important}
-
-  /* NPS KPIs */
-  #nps-kpis{grid-template-columns:1fr 1fr!important}
+  /* ── Install banner ── */
+  #install-banner{bottom:80px!important;font-size:13px;padding:10px 18px}
 }
 </style>
 </head>
@@ -199,6 +240,16 @@ footer{border-top:1px solid var(--bdr);padding:14px 24px;margin-top:32px}
     <button class="nb" onclick="switchTab('corpus')">📈 Corpus Timeline</button>
   </div>
 </nav>
+
+<!-- BOTTOM NAV (mobile only) -->
+<div id="bottom-nav" style="display:none">
+  <button class="bnav-btn on" id="bnav-ledger" onclick="switchTab('ledger','bnav-ledger')">
+    <span class="bicon">📒</span>Ledger
+  </button>
+  <button class="bnav-btn" id="bnav-corpus" onclick="switchTab('corpus','bnav-corpus')">
+    <span class="bicon">📈</span>Corpus
+  </button>
+</div>
 <main>
 
 <!-- ══════════════ LEDGER ══════════════ -->
@@ -509,11 +560,14 @@ let pliPolicies=ld('fin_pli3',[
 let retBen=ld('fin_ret',{enabled:false,gratuity:0,leave:0,pf:0,other:0,bucket:'debt'});
 
 // ═══════════════════════════════ TAB ═════════════════════════════════════════
-function switchTab(t){
+function switchTab(t,bnavId){
   document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('on'));
   el('pg-'+t).classList.add('on');
-  event.target.classList.add('on');
+  if(event&&event.target) event.target.classList.add('on');
+  if(bnavId) el(bnavId).classList.add('on');
+  else el('bnav-'+t)&&el('bnav-'+t).classList.add('on');
   if(t==='corpus') renderCorpus();
 }
 function setAddTab(t){
