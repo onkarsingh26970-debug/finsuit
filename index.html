@@ -490,13 +490,19 @@ function render(){
 }
 
 function fvCalc(corp,sip,rate,years){
-  const r=rate/100/12,n=years*12;
-  if(r===0)return corp+sip*n;
-  return Math.round(corp*Math.pow(1+r,n)+sip*((Math.pow(1+r,n)-1)/r)*(1+r));
+  // Yearly compounding; SIP is monthly so annual SIP = sip*12
+  const r=rate/100;
+  const annSip=sip*12;
+  if(r===0)return Math.round(corp+annSip*years);
+  return Math.round(corp*Math.pow(1+r,years)+annSip*((Math.pow(1+r,years)-1)/r)*(1+r));
 }
 function fvStep(corp,sip,rate,step,years){
-  const r=rate/100/12;let v=corp;
-  for(let y=0;y<years;y++){const s=sip*Math.pow(1+step/100,y);for(let m=0;m<12;m++)v=v*(1+r)+s;}
+  // Yearly compounding with step-up; annual SIP grows each year
+  const r=rate/100;let v=corp;
+  for(let y=0;y<years;y++){
+    const annSip=sip*12*Math.pow(1+step/100,y);
+    v=v*(1+r)+annSip;
+  }
   return Math.round(v);
 }
 
@@ -545,7 +551,7 @@ function renderCorpus(){
   const gpfYrs=Math.min(yrs,Math.max(0,C.gpfMat-THIS_Y));
   const gpfP=fvCalc(C.gpfCorp,C.gpfSip,C.gpfRate,gpfYrs);
   let emgP;
-  if(C.emgTarget>0){let e=C.emgCorp;const r=C.emgRate/100/12;for(let m=0;m<yrs*12;m++){if(e>=C.emgTarget)e=e*(1+r);else{e=e*(1+r)+C.emgSip;if(e>C.emgTarget)e=C.emgTarget;}}emgP=Math.round(e);}
+  if(C.emgTarget>0){let e=C.emgCorp;const r=C.emgRate/100;const annSip=C.emgSip*12;for(let y=0;y<yrs;y++){if(e>=C.emgTarget)e=e*(1+r);else{e=e*(1+r)+annSip;if(e>C.emgTarget)e=C.emgTarget;}}emgP=Math.round(e);}
   else emgP=fvCalc(C.emgCorp,C.emgSip,C.emgRate,yrs);
   const npsP=fvCalc(C.npsCorp,C.npsSip,C.npsRate,yrs);
   const pliP=C.pliMv>0?C.pliMv:C.pliVal;
