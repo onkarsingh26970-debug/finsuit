@@ -1,32 +1,35 @@
 const CACHE = 'finsuite-v5';
-const ASSETS = [
-  './index.html',
-  './manifest.json',
-  './icon-192.png',
-  './icon-512.png'
-];
+const ASSETS = ['./index.html','./manifest.json','./icon-192.png','./icon-512.png'];
 
-// Install: cache all assets
+// Install: pre-cache all assets
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())
   );
 });
 
-// Activate: clean old caches
+// Activate: clear old caches immediately
 self.addEventListener('activate', e => {
   e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-    ).then(() => self.clients.claim())
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
+      .then(() => self.clients.claim())
   );
 });
 
-// Fetch: serve from cache, fallback to network
+// NETWORK-FIRST: always try network, fall back to cache if offline
 self.addEventListener('fetch', e => {
   e.respondWith(
-    caches.match(e.request).then(r => r || fetch(e.request).catch(() =>
-      caches.match('./index.html')
-    ))
+    fetch(e.request)
+      .then(res => {
+        // Got fresh response — update cache too
+        const clone = res.clone();
+        caches.open(CACHE).then(c => c.put(e.request, clone));
+        return res;
+      })
+      .catch(() => {
+        // Offline — serve from cache
+        return caches.match(e.request).then(r => r || caches.match('./index.html'));
+      })
   );
 });
