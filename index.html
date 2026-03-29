@@ -215,6 +215,56 @@ footer{border-top:1px solid var(--bdr);padding:14px 24px;margin-top:32px}
 
   /* ── Install banner ── */
   #install-banner{bottom:80px!important;font-size:13px;padding:10px 18px}
+
+  /* ── CORPUS SPECIFIC FIXES ── */
+
+  /* Portfolio 4-col → 1 col (each bucket full width) */
+  #portfolio-grid{grid-template-columns:1fr!important}
+
+  /* Each bucket inner 2-col stays 2-col (fine on mobile) */
+  .eq-b > div:last-child,
+  .dt-b > div:last-child,
+  .gpf-b > div:last-child,
+  .emg-b > div:last-child{grid-template-columns:1fr 1fr!important}
+
+  /* Small fields: 2 col */
+  #small-fields-grid{grid-template-columns:1fr 1fr!important}
+
+  /* Retirement benefits header: stack vertically */
+  #ret-ben-header{flex-direction:column!important;align-items:flex-start!important;gap:10px}
+
+  /* Retirement benefits fields: 1 col */
+  #ret-ben-fields > div:first-child{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:10px
+  }
+
+  /* Corpus chart subtitle: wrap text */
+  #pg-corpus .cs{word-break:break-word;line-height:1.5}
+
+  /* Year table: proper horizontal scroll */
+  #yr-table{min-width:700px;font-size:11px}
+  #yr-table th,#yr-table td{padding:6px 7px;white-space:nowrap}
+
+  /* NPS inputs grid */
+  .gauto{grid-template-columns:1fr 1fr!important}
+
+  /* NPS KPI 2-col */
+  #nps-kpis{grid-template-columns:1fr 1fr!important;margin-top:10px}
+
+  /* PLI table: horizontal scroll */
+  #pli-table{min-width:700px}
+
+  /* Needs table */
+  #needs-table{min-width:480px}
+
+  /* Corpus page top-level gaps */
+  #pg-corpus{gap:12px!important}
+
+  /* Corpus KPIs 2-col */
+  #corpus-kpis{grid-template-columns:1fr 1fr!important;gap:10px}
+  #corpus-kpis .kpi:last-child{grid-column:1/-1;background:rgba(20,184,166,.07);border-color:rgba(20,184,166,.3)}
 }
 </style>
 </head>
@@ -362,7 +412,7 @@ footer{border-top:1px solid var(--bdr);padding:14px 24px;margin-top:32px}
 
   <!-- Retirement Benefits -->
   <div class="card ret-b" style="border:1px solid rgba(20,184,166,.3)">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+    <div id="ret-ben-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
       <div>
         <div class="ct">🎁 Retirement Benefits</div>
         <div class="cs">Gratuity, leave encashment, pension arrears — received as lumpsum at retirement year</div>
